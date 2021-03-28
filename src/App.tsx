@@ -1,0 +1,79 @@
+import { IonApp, IonRouterOutlet, IonSplitPane} from '@ionic/react';
+
+import { IonReactRouter } from '@ionic/react-router';
+import { Redirect, Route } from 'react-router-dom';
+import Menu from './components/Menu';
+import WorkingOnPage from './components/WorkingOnPage';
+import Summary from './pages/Summary';
+
+
+
+import Page from './pages/Page';
+
+/* Core CSS required for Ionic components to work properly */
+import '@ionic/react/css/core.css';
+
+/* Basic CSS for apps built with Ionic */
+import '@ionic/react/css/normalize.css';
+import '@ionic/react/css/structure.css';
+import '@ionic/react/css/typography.css';
+
+/* Optional CSS utils that can be commented out */
+import '@ionic/react/css/padding.css';
+import '@ionic/react/css/float-elements.css';
+import '@ionic/react/css/text-alignment.css';
+import '@ionic/react/css/text-transformation.css';
+import '@ionic/react/css/flex-utils.css';
+import '@ionic/react/css/display.css';
+
+/* Theme variables */
+import './theme/variables.css';
+import PricePage from './pages/PricePage';
+import ErrorsByTypePage from './pages/ErrorsByTypePage';
+import MainTabs from './pages/MainTabs';
+
+const App: React.FC = () => {
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonSplitPane contentId="main">
+          <Menu />
+          <IonRouterOutlet id="main">
+            <Route path="/tabs" render={() => <MainTabs />} />
+            <Route path="/" exact={true}>
+              <Redirect to="/page/Summary" />
+            </Route>
+            <Route path="/page/Leads" exact={true}>
+              <Page name="Leads"/>
+            </Route>
+            <Route path="/page/Quotations" exact={true}>
+              <Page name="Quotations"/>
+            </Route>
+            <Route path="/page/DriveTests" exact={true}>
+              <Page name="DriveTests"/>
+            </Route>
+            <Route path="/page/DriveTests" exact={true}>
+              <Page name="DriveTests"/>
+            </Route>
+            <Route path="/page/Summary" exact={true}>
+              <Summary/>
+            </Route>
+            <Route path="/page/MonitorErrors" exact={true}>
+              <ErrorsByTypePage/>
+            </Route>
+            <Route path="/page/UserAccess" exact={true}>
+              <WorkingOnPage name="UserAccess"/>
+            </Route>
+            <Route path="/page/Prices" exact={true}>
+              <PricePage/>
+            </Route>     
+                   
+          </IonRouterOutlet>
+        </IonSplitPane>
+      </IonReactRouter>
+
+    </IonApp>
+  );
+};
+
+export default App;
