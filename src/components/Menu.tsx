@@ -89,7 +89,7 @@ const Menu: React.FC = () => {
         <IonList id="inbox-list">
           <img src="kia_logo.png" />
 
-          <IonListHeader slot="end" color="primary">Monitor MySales V0.6 
+          <IonListHeader slot="end" color="primary">Monitor MySales V0.8 
           </IonListHeader>
           <IonNote>by ricardo.gama@kia-mexico.com</IonNote>
           {appPages.map((appPage, index) => {
