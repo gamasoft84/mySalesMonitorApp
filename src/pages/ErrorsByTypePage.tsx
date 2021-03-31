@@ -23,12 +23,15 @@ interface InfoErrors {
 
 
 const ErrorsByTypePage: React.FC = () => {
-  const [data, setData] = useState<InfoErrors[]>([]);
+  const [dataCritic, setDataCritic] = useState<InfoErrors[]>([]);
+  const [dataNoCritic, setDataNoCritic] = useState<InfoErrors[]>([]);
+
   const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
     getCountTotalErrorsByType().then((data) => {
-      setData(data);
+      setDataCritic(data.filter((d:InfoErrors) => d.critic));
+      setDataNoCritic(data.filter((d:InfoErrors) => !d.critic));
     });
     setShowLoading(false);
   }, []);
@@ -45,9 +48,17 @@ const ErrorsByTypePage: React.FC = () => {
       </IonHeader>
 
       <IonContent >
-        {data.map((d, index) => (
+        {dataCritic.map((d, index) => (
           <IonItem key={index} color={d.totalMsgAllowed<d.total && d.critic ? 'warning': ''}>
             <IonLabel>{d.message}</IonLabel>
+            <IonBadge color={d.critic ? 'danger': 'success'} slot="end">
+              {d.total}
+            </IonBadge>
+          </IonItem>
+        ))}
+        {dataNoCritic.map((d, index) => (
+          <IonItem key={index} color={d.totalMsgAllowed<d.total && d.critic ? 'warning': ''}>
+            <IonLabel className="ion-text-wrap">{d.message}</IonLabel>
             <IonBadge color={d.critic ? 'danger': 'success'} slot="end">
               {d.total}
             </IonBadge>

@@ -11,6 +11,15 @@ import {
   IonPage,
   IonButtons,
   IonMenuButton,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonCard,
+  IonCardHeader,
+  IonAvatar,
+  IonCardContent,
+  IonCardTitle,
+  IonCardSubtitle,
 } from "@ionic/react";
 import React, { useState, useEffect } from "react";
 import { getCountByTypeKMM } from "../helpers/getDataKMM";
@@ -110,44 +119,42 @@ const { LocalNotifications } = Plugins;
           onDidDismiss={() => setShowLoading(false)}
           message={"Loading..."}
         />
-        <IonList>
-          <IonItem>
-            <IonThumbnail slot="start">
-              <img src="Leads.png" />
-            </IonThumbnail>
-            <IonLabel>
-              <h2>Leads</h2>
-              <a href="/page/Leads">
-                <p>{totalLeads}</p>
-              </a>
-            </IonLabel>
-          </IonItem>
-          <IonItem>
-            <IonThumbnail slot="start">
-              <img src="Quotation.png" />
-            </IonThumbnail>
-            <IonLabel>
-              <h2>Quotations</h2>
-              <a href="/page/Quotations">
-                <p>{totalQuotations}</p>
-              </a>
-            </IonLabel>
-          </IonItem>
-          <IonItem>
-            <IonThumbnail slot="start">
-              <img
-                src="TestDrive.png"
-                alt="wc"
-              />
-            </IonThumbnail>
-            <IonLabel>
-              <h2>DriveTests</h2>
-              <a href="/page/DriveTests">
-                <p>{totalTestDrive}</p>
-              </a>
-            </IonLabel>
-          </IonItem>
-        </IonList>
+        
+        
+        <IonGrid fixed>
+            <IonRow>
+                <IonCol size="12" size-sm="6" size-xl="4">                        
+                    
+
+                    <IonCard routerLink={'/page/Leads'}>
+                      <img src="Leads.png" height="100px" width="100px"/>
+                      <IonCardHeader>
+                        <IonCardSubtitle>Leads</IonCardSubtitle>
+                        <IonCardTitle>{totalLeads}</IonCardTitle>
+                      </IonCardHeader>
+                    </IonCard>
+
+                    <IonCard routerLink={'/page/Quotations'}>
+                      <img src="Quotation.png" height="100px" width="100px"/>
+                      <IonCardHeader>
+                        <IonCardSubtitle>Quotations</IonCardSubtitle>
+                        <IonCardTitle>{totalQuotations}</IonCardTitle>
+                      </IonCardHeader>
+                    </IonCard>
+
+                    <IonCard routerLink={'/page/DriveTests'}>
+                      <img src="TestDrive.png" height="100px" width="100px"/>
+                      <IonCardHeader>
+                        <IonCardSubtitle>Drive Tests</IonCardSubtitle>
+                        <IonCardTitle>{totalTestDrive}</IonCardTitle>
+                      </IonCardHeader>
+                    </IonCard>
+
+                </IonCol>
+            </IonRow>
+          </IonGrid>
+
+
       </IonContent>
     </IonPage>
     

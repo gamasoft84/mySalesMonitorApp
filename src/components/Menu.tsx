@@ -85,11 +85,11 @@ const Menu: React.FC = () => {
 
   return (
     <IonMenu contentId="main" type="overlay">
-      <IonContent>
-        <IonList id="inbox-list">
+      <IonContent> 
+        <IonList id="inbox-list" className="ion-margin-top">
           <img src="kia_logo.png" />
 
-          <IonListHeader slot="end" color="primary">Monitor MySales V0.8 
+          <IonListHeader slot="end" color="primary">Monitor MySales V1.0
           </IonListHeader>
           <IonNote>by ricardo.gama@kia-mexico.com</IonNote>
           {appPages.map((appPage, index) => {
@@ -108,6 +108,7 @@ const Menu: React.FC = () => {
                     slot="start"
                     ios={appPage.iosIcon}
                     md={appPage.mdIcon}
+                    color="primary"
                   />
                   <IonLabel>{appPage.title}</IonLabel>
                 </IonItem>
