@@ -1,5 +1,5 @@
 {
-  "appId": "om.kia.mexico.kmmmysales.monitor",
+  "appId": "com.kia.mexico.kmmmysales.monitor",
   "appName": "Monitor MySales",
   "bundledWebRuntime": false,
   "npmClient": "npm",
