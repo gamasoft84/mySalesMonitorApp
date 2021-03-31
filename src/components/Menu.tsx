@@ -67,7 +67,7 @@ const appPages: AppPage[] = [
     mdIcon: analyticsSharp,
   },
   {
-    title: "User access",
+    title: "Login Users",
     url: "/page/UserAccess",
     iosIcon: personCircleOutline,
     mdIcon: personCircleSharp,

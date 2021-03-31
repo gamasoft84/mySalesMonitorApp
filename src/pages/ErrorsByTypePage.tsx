@@ -43,7 +43,7 @@ const ErrorsByTypePage: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Errors by Type</IonTitle>
+          <IonTitle>Monitor Errors</IonTitle>
         </IonToolbar>
       </IonHeader>
 

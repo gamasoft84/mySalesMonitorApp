@@ -22,3 +22,10 @@ export const getCountTotalErrorsByType = async() => {
     const data = await resp.json();
     return data;
 }
+
+//Login section
+export const getCountTotalLoginsByDevices = async() => {
+    const resp = await fetchSinToken('/dataLoginsByTypeDevicesByDay');
+    const data = await resp.json();
+    return data;
+}

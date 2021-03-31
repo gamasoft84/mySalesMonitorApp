@@ -31,6 +31,7 @@ import './theme/variables.css';
 import PricePage from './pages/PricePage';
 import ErrorsByTypePage from './pages/ErrorsByTypePage';
 import MainTabs from './pages/MainTabs';
+import LoiginByDevice from './pages/LoiginByDevice';
 
 const App: React.FC = () => {
   return (
@@ -62,7 +63,7 @@ const App: React.FC = () => {
               <ErrorsByTypePage/>
             </Route>
             <Route path="/page/UserAccess" exact={true}>
-              <WorkingOnPage name="UserAccess"/>
+              <LoiginByDevice/>
             </Route>
             <Route path="/page/Prices" exact={true}>
               <PricePage/>

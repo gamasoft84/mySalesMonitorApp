@@ -25,7 +25,7 @@ const VehicleItem: React.FC<ItemProps> = ({ vehicle }) => {
           <IonList lines="none">
               <IonItem detail={false} routerLink={`/tabs/vehicles/${vehicle.id}`}>
               <IonLabel>
-                <h3>About {vehicle.name} {vehicle.year}.</h3>
+                <h3>Model {vehicle.year}</h3>
               </IonLabel>
             </IonItem>
           </IonList>

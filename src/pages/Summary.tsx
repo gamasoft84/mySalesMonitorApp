@@ -1,12 +1,8 @@
 import {
-  IonList,
-  IonItem,
   IonContent,
   IonHeader,
   IonTitle,
   IonToolbar,
-  IonLabel,
-  IonThumbnail,
   IonLoading,
   IonPage,
   IonButtons,
@@ -16,8 +12,6 @@ import {
   IonCol,
   IonCard,
   IonCardHeader,
-  IonAvatar,
-  IonCardContent,
   IonCardTitle,
   IonCardSubtitle,
 } from "@ionic/react";

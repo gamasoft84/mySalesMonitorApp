@@ -18,7 +18,7 @@ const Page: React.FC <ContainerProps> = ({ name }) => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Monitor of {name}</IonTitle>
+          <IonTitle>{name}</IonTitle>
         </IonToolbar>
       </IonHeader>
 
