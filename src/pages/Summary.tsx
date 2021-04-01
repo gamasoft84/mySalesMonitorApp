@@ -113,7 +113,7 @@ const Summary: React.FunctionComponent = () => {
 
 
         <IonCard routerLink={"/page/Leads"} className="card-center" color="">
-          <img src="Lead.png" height="120" width="100" className="ion-margin-top"/>
+          <img src="Lead.png" height="100" width="90" className="ion-margin-top"/>
           <IonCardHeader>
             <IonCardSubtitle>Leads</IonCardSubtitle>
             <IonCardTitle>{totalLeads}</IonCardTitle>
@@ -121,7 +121,7 @@ const Summary: React.FunctionComponent = () => {
         </IonCard>
 
         <IonCard routerLink={"/page/Quotations"} className="card-center">
-          <img src="Quotation.png" height="120" width="120" className="ion-margin-top"/>
+          <img src="Quotation.png" height="100" width="100" className="ion-margin-top"/>
           <IonCardHeader>
             <IonCardSubtitle>Quotations</IonCardSubtitle>
             <IonCardTitle>{totalQuotations}</IonCardTitle>
@@ -129,7 +129,7 @@ const Summary: React.FunctionComponent = () => {
         </IonCard>
 
         <IonCard routerLink={"/page/DriveTests"} className="card-center">
-          <img src="TestDrive.png" height="140" width="120" className="ion-margin-top"/>
+          <img src="TestDrive.png" height="100" width="100" className="ion-margin-top"/>
           <IonCardHeader>
             <IonCardSubtitle>Drive Tests</IonCardSubtitle>
             <IonCardTitle>{totalTestDrive}</IonCardTitle>
