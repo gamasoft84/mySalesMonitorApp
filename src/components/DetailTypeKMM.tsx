@@ -18,7 +18,6 @@ interface ContainerProps {
   name: string;
 }
 const colors = [
-  "success",
   "secondary",
   "tertiary",
   "warning",
@@ -61,7 +60,7 @@ export const DetailTypeKMM: React.FC<ContainerProps> = ({ name }) => {
       {!showLoading ? (
         <IonItem>
           <IonLabel>TOTAL</IonLabel>
-          <IonBadge color={colors[0]} slot="end">
+          <IonBadge color="success" slot="end">
             {total}
           </IonBadge>
         </IonItem>
@@ -72,7 +71,7 @@ export const DetailTypeKMM: React.FC<ContainerProps> = ({ name }) => {
       {data.map((d, index) => (
         <IonItem key={index}>
           <IonLabel>{d.dealer}</IonLabel>
-          <IonBadge color={colors[index % 7]} slot="end">
+          <IonBadge color={colors[index % 6]} slot="end">
             {d.total}
           </IonBadge>
         </IonItem>

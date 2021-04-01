@@ -19,7 +19,6 @@ import {
 } from "ionicons/icons";
 
 const colors = [
-  "success",
   "secondary",
   "tertiary",
   "warning",
@@ -76,7 +75,7 @@ const LoiginByDevice: React.FC = () => {
       {!showLoading ? (
         <IonItem>
           <IonLabel>TOTAL</IonLabel>
-          <IonBadge color={colors[0]} slot="end">
+          <IonBadge color="success" slot="end">
             {total}
           </IonBadge>
         </IonItem>
@@ -87,7 +86,7 @@ const LoiginByDevice: React.FC = () => {
         {data.map((d, index) => (
           <IonItem key={index}>
             <IonLabel>{d.dealer}</IonLabel>
-            <IonBadge color={colors[index % 7]} slot="end">
+            <IonBadge color={colors[index % 6]} slot="end">
               {d.total}
             </IonBadge>
             <IonIcon
@@ -96,7 +95,7 @@ const LoiginByDevice: React.FC = () => {
                       ? phonePortraitOutline : d.typeDevice === 'PC' ? laptopOutline: tabletPortraitOutline}
                     md={d.typeDevice === 'Android' || d.typeDevice === 'Mobile' || d.typeDevice === 'iPhone'
                       ? phonePortraitOutline : d.typeDevice === 'PC' ? laptopOutline: tabletPortraitOutline}  
-                    color={d.typeDevice === 'iPad-12' ? 'success' : colors[6]}
+                    color={d.typeDevice === 'iPad-12' ? 'success' : colors[5]}
                     
                   />
           </IonItem>
