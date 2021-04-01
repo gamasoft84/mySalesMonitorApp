@@ -50,7 +50,7 @@ const ErrorsByTypePage: React.FC = () => {
       <IonContent >
         {dataCritic.map((d, index) => (
           <IonItem key={index} color={d.totalMsgAllowed<d.total && d.critic ? 'warning': ''}>
-            <IonLabel>{d.message}</IonLabel>
+            <IonLabel className="ion-text-wrap">{d.message}</IonLabel>
             <IonBadge color={d.critic ? 'danger': 'success'} slot="end">
               {d.total}
             </IonBadge>

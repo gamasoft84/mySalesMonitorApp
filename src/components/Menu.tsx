@@ -55,7 +55,7 @@ const appPages: AppPage[] = [
     mdIcon: clipboardSharp,
   },
   {
-    title: "DriveTests",
+    title: "Drive Tests",
     url: "/page/DriveTests",
     iosIcon: carSportOutline,
     mdIcon: carSharp,
