@@ -7,17 +7,18 @@ import {
   IonPage,
   IonButtons,
   IonMenuButton,
-  IonGrid,
-  IonRow,
-  IonCol,
   IonCard,
   IonCardHeader,
   IonCardTitle,
   IonCardSubtitle,
 } from "@ionic/react";
+
 import React, { useState, useEffect } from "react";
 import { getCountByTypeKMM } from "../helpers/getDataKMM";
-import { Plugins } from '@capacitor/core';
+import { Plugins } from "@capacitor/core";
+
+
+import './Summary.scss';
 
 
 const Summary: React.FunctionComponent = () => {
@@ -26,13 +27,11 @@ const Summary: React.FunctionComponent = () => {
   const [totalTestDrive, setTotalTestDrive] = useState(0);
   const [showLoading, setShowLoading] = useState(true);
 
-const { LocalNotifications } = Plugins;
-//const { Geolocation } = Plugins;
+  const { LocalNotifications } = Plugins;
+  //const { Geolocation } = Plugins;
 
-// get the users current position
+  // get the users current position
   useEffect(() => {
-
-
     LocalNotifications.schedule({
       notifications: [
         {
@@ -42,11 +41,11 @@ const { LocalNotifications } = Plugins;
           schedule: { at: new Date(Date.now() + 1000 * 2) },
           actionTypeId: "",
           sound: "sirena.wav",
-          iconColor:"success",
-          smallIcon:"http://placekitten.com/g/300/200",  
-          extra: null
+          iconColor: "success",
+          smallIcon: "http://placekitten.com/g/300/200",
+          extra: null,
         },
-       
+
         {
           title: "Monitor MySales",
           body: "[DP Interface] Error message: Invalid credentials \n[23]",
@@ -54,9 +53,9 @@ const { LocalNotifications } = Plugins;
           schedule: { at: new Date(Date.now() + 1000 * 7) },
           actionTypeId: "BBBB",
           sound: "sirena.wav",
-          iconColor:"black",
-          smallIcon:"http://placekitten.com/g/300/200",  
-          extra: null
+          iconColor: "black",
+          smallIcon: "http://placekitten.com/g/300/200",
+          extra: null,
         },
         {
           title: "Monitor MySales",
@@ -65,17 +64,14 @@ const { LocalNotifications } = Plugins;
           schedule: { at: new Date(Date.now() + 1000 * 5) },
           actionTypeId: "AAAA",
           sound: "sirena.wav",
-          iconColor:"danger",
-          smallIcon:"http://placekitten.com/g/300/200",  
-          extra: null
+          iconColor: "danger",
+          smallIcon: "http://placekitten.com/g/300/200",
+          extra: null,
         },
-
-      ]
+      ],
     });
 
-
-   
-   /* const coord = async () => {
+    /* const coord = async () => {
       const position = await Geolocation.getCurrentPosition();
       // grab latitude & longitude
       const latitude = position.coords.latitude;
@@ -107,51 +103,41 @@ const { LocalNotifications } = Plugins;
           <IonTitle>Summary</IonTitle>
         </IonToolbar>
       </IonHeader>
+
       <IonContent>
         <IonLoading
           isOpen={showLoading}
           onDidDismiss={() => setShowLoading(false)}
           message={"Loading..."}
         />
+
+
+        <IonCard routerLink={"/page/Leads"} className="card-center" color="">
+          <img src="Lead.png" height="120" width="100" className="ion-margin-top"/>
+          <IonCardHeader>
+            <IonCardSubtitle>Leads</IonCardSubtitle>
+            <IonCardTitle>{totalLeads}</IonCardTitle>
+          </IonCardHeader>
+        </IonCard>
+
+        <IonCard routerLink={"/page/Quotations"} className="card-center">
+          <img src="Quotation.png" height="120" width="120" className="ion-margin-top"/>
+          <IonCardHeader>
+            <IonCardSubtitle>Quotations</IonCardSubtitle>
+            <IonCardTitle>{totalQuotations}</IonCardTitle>
+          </IonCardHeader>
+        </IonCard>
+
+        <IonCard routerLink={"/page/DriveTests"} className="card-center">
+          <img src="TestDrive.png" height="140" width="120" className="ion-margin-top"/>
+          <IonCardHeader>
+            <IonCardSubtitle>Drive Tests</IonCardSubtitle>
+            <IonCardTitle>{totalTestDrive}</IonCardTitle>
+          </IonCardHeader>
+        </IonCard>
         
-        
-        <IonGrid fixed>
-            <IonRow>
-                <IonCol size="12" size-sm="6" size-xl="4">                        
-                    
-
-                    <IonCard routerLink={'/page/Leads'}>
-                      <img src="Leads.png" height="100px" width="100px"/>
-                      <IonCardHeader>
-                        <IonCardSubtitle>Leads</IonCardSubtitle>
-                        <IonCardTitle>{totalLeads}</IonCardTitle>
-                      </IonCardHeader>
-                    </IonCard>
-
-                    <IonCard routerLink={'/page/Quotations'}>
-                      <img src="Quotation.png" height="100px" width="100px"/>
-                      <IonCardHeader>
-                        <IonCardSubtitle>Quotations</IonCardSubtitle>
-                        <IonCardTitle>{totalQuotations}</IonCardTitle>
-                      </IonCardHeader>
-                    </IonCard>
-
-                    <IonCard routerLink={'/page/DriveTests'}>
-                      <img src="TestDrive.png" height="100px" width="100px"/>
-                      <IonCardHeader>
-                        <IonCardSubtitle>Drive Tests</IonCardSubtitle>
-                        <IonCardTitle>{totalTestDrive}</IonCardTitle>
-                      </IonCardHeader>
-                    </IonCard>
-
-                </IonCol>
-            </IonRow>
-          </IonGrid>
-
-
       </IonContent>
     </IonPage>
-    
   );
 };
 
