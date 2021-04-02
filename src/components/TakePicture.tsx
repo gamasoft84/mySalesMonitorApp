@@ -18,12 +18,19 @@ const { Camera } = Plugins;
 const TakePicture: React.FC = () => {
   const [image, setImage] = useState<string>("");
 
+  const { Device } = Plugins;
+
+
+
   const takePicture = async () => {
     const photo = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
       resultType: CameraResultType.Uri,
     });
+
+    const info = await Device.getInfo();
+    console.log(info);
 
     setImage(photo.webPath || "");
   };

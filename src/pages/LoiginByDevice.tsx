@@ -71,7 +71,7 @@ const LoiginByDevice: React.FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent >
+      <IonContent fullscreen>
       {!showLoading ? (
         <IonItem>
           <IonLabel>TOTAL</IonLabel>

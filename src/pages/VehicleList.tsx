@@ -23,14 +23,14 @@ const VehicleList: React.FC<SpeakerListProps> = ({ vehicles }) => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Vehicles</IonTitle>
+          <IonTitle>Prices</IonTitle>
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen={true}>
+      <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Vehicles</IonTitle>
+            <IonTitle size="large">Prices</IonTitle>
           </IonToolbar>
         </IonHeader>
           <IonGrid fixed>
