@@ -23,7 +23,7 @@ const VehicleList: React.FC<SpeakerListProps> = ({ vehicles }) => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Prices</IonTitle>
+          <IonTitle>Vehicles</IonTitle>
         </IonToolbar>
       </IonHeader>
 

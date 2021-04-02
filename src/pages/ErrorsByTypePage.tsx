@@ -46,8 +46,16 @@ const ErrorsByTypePage: React.FC = () => {
           <IonTitle>Monitor Errors</IonTitle>
         </IonToolbar>
       </IonHeader>
+      
 
       <IonContent >
+
+        <IonHeader collapse="condense">
+            <IonToolbar>
+              <IonTitle size="large">Monitor Errors.</IonTitle>
+            </IonToolbar>
+          </IonHeader>
+
         {dataCritic.map((d, index) => (
           <IonItem key={index} color={d.totalMsgAllowed<d.total && d.critic ? 'warning': ''}>
             <IonLabel className="ion-text-wrap">{d.message}</IonLabel>
