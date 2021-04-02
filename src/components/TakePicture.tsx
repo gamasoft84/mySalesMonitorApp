@@ -16,9 +16,7 @@ import { Plugins, CameraResultType } from "@capacitor/core";
 const { Camera } = Plugins;
 
 const TakePicture: React.FC = () => {
-  const [image, setImage] = useState<string>("");
-
-  const { Device } = Plugins;
+  const [image, setImage] = useState<string>('');
 
 
 
@@ -28,10 +26,6 @@ const TakePicture: React.FC = () => {
       allowEditing: true,
       resultType: CameraResultType.Uri,
     });
-
-    const info = await Device.getInfo();
-    console.log(info);
-
     setImage(photo.webPath || "");
   };
 

@@ -11,7 +11,6 @@ import {
   IonAvatar,
 } from "@ionic/react";
 
-import { useLocation } from "react-router-dom";
 import {
   personCircleOutline,
   personCircleSharp,
@@ -28,6 +27,9 @@ import {
   cameraOutline,
   cameraSharp,
 } from "ionicons/icons";
+
+import { useLocation } from "react-router-dom";
+
 import "./Menu.css";
 
 interface AppPage {
