@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import {
   IonLoading,
@@ -9,6 +9,7 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  useIonViewWillEnter,
 } from "@ionic/react";
 
 import { IonBadge, IonItem, IonLabel } from "@ionic/react";
@@ -28,13 +29,13 @@ const ErrorsByTypePage: React.FC = () => {
 
   const [showLoading, setShowLoading] = useState(true);
 
-  useEffect(() => {
+  useIonViewWillEnter(() => {
     getCountTotalErrorsByType().then((data) => {
       setDataCritic(data.filter((d:InfoErrors) => d.critic));
       setDataNoCritic(data.filter((d:InfoErrors) => !d.critic));
     });
     setShowLoading(false);
-  }, []);
+  });
 
   return (
     <IonPage>

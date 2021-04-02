@@ -11,12 +11,11 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonCardSubtitle,
+  useIonViewWillEnter,
 } from "@ionic/react";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { getCountByTypeKMM } from "../helpers/getDataKMM";
-import { Plugins } from "@capacitor/core";
-
 
 import './Summary.scss';
 
@@ -27,60 +26,8 @@ const Summary: React.FunctionComponent = () => {
   const [totalTestDrive, setTotalTestDrive] = useState(0);
   const [showLoading, setShowLoading] = useState(true);
 
-  const { LocalNotifications } = Plugins;
-  //const { Geolocation } = Plugins;
-
-  // get the users current position
-  useEffect(() => {
-    LocalNotifications.schedule({
-      notifications: [
-        {
-          title: "Monitor MySales",
-          body: "[BNP Interface] Error message: Read timed out \n[4]",
-          id: 1,
-          schedule: { at: new Date(Date.now() + 1000 * 2) },
-          actionTypeId: "",
-          sound: "sirena.wav",
-          iconColor: "success",
-          smallIcon: "http://placekitten.com/g/300/200",
-          extra: null,
-        },
-
-        {
-          title: "Monitor MySales",
-          body: "[DP Interface] Error message: Invalid credentials \n[23]",
-          id: 3,
-          schedule: { at: new Date(Date.now() + 1000 * 7) },
-          actionTypeId: "BBBB",
-          sound: "sirena.wav",
-          iconColor: "black",
-          smallIcon: "http://placekitten.com/g/300/200",
-          extra: null,
-        },
-        {
-          title: "Monitor MySales",
-          body: "[DP Interface] Error message: User not found \n[600]",
-          id: 2,
-          schedule: { at: new Date(Date.now() + 1000 * 5) },
-          actionTypeId: "AAAA",
-          sound: "sirena.wav",
-          iconColor: "danger",
-          smallIcon: "http://placekitten.com/g/300/200",
-          extra: null,
-        },
-      ],
-    });
-
-    /* const coord = async () => {
-      const position = await Geolocation.getCurrentPosition();
-      // grab latitude & longitude
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      console.log(latitude)
-      console.log(longitude)
-    }
-    coord();*/
-
+  useIonViewWillEnter(() => {
+    setShowLoading(true);
     getCountByTypeKMM("Leads").then((total) => {
       setTotalLeads(total);
     });

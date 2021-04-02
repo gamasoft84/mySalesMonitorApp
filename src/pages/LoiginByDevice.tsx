@@ -11,6 +11,7 @@ import {
   IonToolbar,
   IonIcon,
   useIonViewWillEnter,
+  IonSearchbar,
 } from "@ionic/react";
 
 import { IonBadge, IonItem, IonLabel } from "@ionic/react";
@@ -18,6 +19,7 @@ import { getCountTotalLoginsByDevices } from "../helpers/getDataKMM";
 import {
   phonePortraitOutline,tabletPortraitOutline,laptopOutline
 } from "ionicons/icons";
+import { getTotalDealer } from "../helpers/utils";
 
 const colors = [
   "secondary",
@@ -38,6 +40,8 @@ interface InfoDealer {
 
 const LoiginByDevice: React.FC = () => {
   const [data, setData] = useState<InfoDealer[]>([]);
+  const [dataSearch, setDataSerch] = useState<InfoDealer[]>([]);
+
   const [total, setTotal] = useState(0);
 
   const [showLoading, setShowLoading] = useState(true);
@@ -45,20 +49,19 @@ const LoiginByDevice: React.FC = () => {
   useIonViewWillEnter(() => {
     getCountTotalLoginsByDevices().then((data) => {
       data.sort(((a:InfoDealer, b:InfoDealer) => b.total - a.total));
-
       setData(data);
-      let total =
-        data.length > 0
-          ? data.length > 1
-            ? data
-                .map((d: InfoDealer) => d.total)
-                .reduce((a: number, b: number) => a + b)
-            : data[0].total
-          : 0;
-      setTotal(total);
+      setTotal(getTotalDealer(data));
     });
     setShowLoading(false);
-  };
+  });
+
+  const onChangeSearch = (value: string) =>{
+    if(data.length > 0){
+      let dataFilter = data.filter( d => d.dealer.toLowerCase().includes(value.toLowerCase()))
+      setDataSerch(dataFilter);
+      setTotal(getTotalDealer(dataFilter));
+    }
+  }
 
   return (
     <IonPage>
@@ -70,6 +73,10 @@ const LoiginByDevice: React.FC = () => {
           <IonTitle>Login users</IonTitle>
         </IonToolbar>
       </IonHeader>
+
+    <IonToolbar>
+      <IonSearchbar  inputmode="text" placeholder="Search ..." animated onIonChange={(e) => onChangeSearch(e.detail.value || '')}></IonSearchbar>
+    </IonToolbar>
 
       <IonContent fullscreen>
       {!showLoading ? (
