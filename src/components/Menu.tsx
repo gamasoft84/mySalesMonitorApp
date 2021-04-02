@@ -8,7 +8,7 @@ import {
   IonMenu,
   IonMenuToggle,
   IonNote,
-  IonAvatar,
+  IonToggle,
 } from "@ionic/react";
 
 import {
@@ -26,7 +26,10 @@ import {
   cashSharp,
   cameraOutline,
   cameraSharp,
+  moonOutline,
+  moonSharp
 } from "ionicons/icons";
+import { useState } from "react";
 
 import { useLocation } from "react-router-dom";
 
@@ -92,6 +95,15 @@ const appPages: AppPage[] = [
 
 const Menu: React.FC = () => {
   const location = useLocation();
+  const [checked, setChecked] = useState(false);
+
+
+
+  const toggleDarkModeHandler = () => {
+    setChecked(!checked);
+    document.body.classList.toggle("dark");
+  }
+
 
   return (
     <IonMenu contentId="main" type="overlay">
@@ -125,6 +137,18 @@ const Menu: React.FC = () => {
               </IonMenuToggle>
             );
           })}
+
+            <IonItem lines="none"> 
+              <IonIcon
+                    slot="start"
+                    ios={moonOutline}
+                    md={moonSharp}
+                    className="component-icon component-icon-dark"
+                  />
+                <IonLabel>Dark Mode</IonLabel>
+                <IonToggle checked={checked} onIonChange={toggleDarkModeHandler} />
+            </IonItem>
+
         </IonList>
       </IonContent>
     </IonMenu>
