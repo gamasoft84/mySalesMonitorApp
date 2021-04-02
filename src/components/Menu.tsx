@@ -144,6 +144,7 @@ const Menu: React.FC = () => {
                     ios={moonOutline}
                     md={moonSharp}
                     className="component-icon component-icon-dark"
+                    color="primary"
                   />
                 <IonLabel>Dark Mode</IonLabel>
                 <IonToggle checked={checked} onIonChange={toggleDarkModeHandler} />

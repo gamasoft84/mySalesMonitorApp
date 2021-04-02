@@ -3,7 +3,8 @@ import {
   IonItem,
   IonLabel,
   IonLoading,
-  IonTitle,
+  IonSearchbar,
+  IonToolbar,
 } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import { getDataKMM } from "../helpers/getDataKMM";
@@ -29,6 +30,8 @@ const colors = [
 
 export const DetailTypeKMM: React.FC<ContainerProps> = ({ name }) => {
   const [data, setData] = useState<InfoDealer[]>([]);
+  const [dataSearch, setDataSerch] = useState<InfoDealer[]>([]);
+
   const [total, setTotal] = useState(0);
   const [showLoading, setShowLoading] = useState(true);
 
@@ -37,6 +40,7 @@ export const DetailTypeKMM: React.FC<ContainerProps> = ({ name }) => {
 
     getDataKMM(name).then((data) => {
       setData(data);
+      setDataSerch(data)
       let total =
         data.length > 0
           ? data.length > 1
@@ -50,6 +54,26 @@ export const DetailTypeKMM: React.FC<ContainerProps> = ({ name }) => {
     });
   }, [name]);
 
+  const onChangeSearch = (value: string) =>{
+    if(data.length > 0){
+
+      let dataFilter = data.filter( d => d.dealer.toLowerCase().includes(value.toLowerCase()))
+      setDataSerch(dataFilter);
+
+     let total =
+     dataFilter.length > 0
+        ? dataFilter.length > 1
+          ? dataFilter
+              .map((d: InfoDealer) => d.total)
+              .reduce((a: number, b: number) => a + b)
+          : dataFilter[0].total
+        : 0;
+
+      setTotal(total);
+
+    }
+  }
+
   return (
     <div>
       <IonLoading
@@ -57,6 +81,12 @@ export const DetailTypeKMM: React.FC<ContainerProps> = ({ name }) => {
         onDidDismiss={() => setShowLoading(false)}
         message={"Loading..."}
       />
+
+    <IonToolbar>
+      <IonSearchbar placeholder="Search ..." animated onIonChange={(e) => onChangeSearch(e.detail.value || '')}></IonSearchbar>
+    </IonToolbar>
+
+
       {!showLoading ? (
         <IonItem>
           <IonLabel>TOTAL</IonLabel>
@@ -68,7 +98,7 @@ export const DetailTypeKMM: React.FC<ContainerProps> = ({ name }) => {
         ""
       )}
 
-      {data.map((d, index) => (
+      {dataSearch.map((d, index) => (
         <IonItem key={index}>
           <IonLabel>{d.dealer}</IonLabel>
           <IonBadge color={colors[index % 6]} slot="end">
