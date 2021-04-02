@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import {
   IonLoading,
@@ -10,6 +10,7 @@ import {
   IonTitle,
   IonToolbar,
   IonIcon,
+  useIonViewWillEnter,
 } from "@ionic/react";
 
 import { IonBadge, IonItem, IonLabel } from "@ionic/react";
@@ -39,10 +40,9 @@ const LoiginByDevice: React.FC = () => {
   const [data, setData] = useState<InfoDealer[]>([]);
   const [total, setTotal] = useState(0);
 
-
   const [showLoading, setShowLoading] = useState(true);
 
-  useEffect(() => {
+  useIonViewWillEnter(() => {
     getCountTotalLoginsByDevices().then((data) => {
       data.sort(((a:InfoDealer, b:InfoDealer) => b.total - a.total));
 
@@ -58,7 +58,7 @@ const LoiginByDevice: React.FC = () => {
       setTotal(total);
     });
     setShowLoading(false);
-  }, []);
+  };
 
   return (
     <IonPage>

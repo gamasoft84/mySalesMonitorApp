@@ -5,9 +5,11 @@ import {
   IonLoading,
   IonSearchbar,
   IonToolbar,
+  useIonViewWillEnter,
 } from "@ionic/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { getDataKMM } from "../helpers/getDataKMM";
+import { getTotalDealer } from "../helpers/utils";
 
 interface InfoDealer {
   group: string;
@@ -35,42 +37,21 @@ export const DetailTypeKMM: React.FC<ContainerProps> = ({ name }) => {
   const [total, setTotal] = useState(0);
   const [showLoading, setShowLoading] = useState(true);
 
-  useEffect(() => {
+  useIonViewWillEnter(() => {
     setShowLoading(true);
-
     getDataKMM(name).then((data) => {
-      setData(data);
-      setDataSerch(data)
-      let total =
-        data.length > 0
-          ? data.length > 1
-            ? data
-                .map((d: InfoDealer) => d.total)
-                .reduce((a: number, b: number) => a + b)
-            : data[0].total
-          : 0;
-      setTotal(total);
-      setShowLoading(false);
+        setData(data);
+        setDataSerch(data)
+        setTotal(getTotalDealer(data));
+        setShowLoading(false);
     });
-  }, [name]);
+  });
 
   const onChangeSearch = (value: string) =>{
     if(data.length > 0){
-
       let dataFilter = data.filter( d => d.dealer.toLowerCase().includes(value.toLowerCase()))
       setDataSerch(dataFilter);
-
-     let total =
-     dataFilter.length > 0
-        ? dataFilter.length > 1
-          ? dataFilter
-              .map((d: InfoDealer) => d.total)
-              .reduce((a: number, b: number) => a + b)
-          : dataFilter[0].total
-        : 0;
-
-      setTotal(total);
-
+      setTotal(getTotalDealer(dataFilter));
     }
   }
 
@@ -83,7 +64,7 @@ export const DetailTypeKMM: React.FC<ContainerProps> = ({ name }) => {
       />
 
     <IonToolbar>
-      <IonSearchbar placeholder="Search ..." animated onIonChange={(e) => onChangeSearch(e.detail.value || '')}></IonSearchbar>
+      <IonSearchbar  inputmode="text" placeholder="Search ..." animated onIonChange={(e) => onChangeSearch(e.detail.value || '')}></IonSearchbar>
     </IonToolbar>
 
 
