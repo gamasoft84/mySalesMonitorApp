@@ -25,6 +25,8 @@ import {
   analyticsSharp,
   cashOutline,
   cashSharp,
+  cameraOutline,
+  cameraSharp,
 } from "ionicons/icons";
 import "./Menu.css";
 
@@ -77,6 +79,12 @@ const appPages: AppPage[] = [
     url: "/page/Prices",
     iosIcon: cashOutline,
     mdIcon: cashSharp,
+  },
+  {
+    title: "Take Picture",
+    url: "/page/TakePicture",
+    iosIcon: cameraOutline,
+    mdIcon: cameraSharp,
   }
 ];
 
