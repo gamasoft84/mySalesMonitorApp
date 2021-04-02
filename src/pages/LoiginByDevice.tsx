@@ -40,7 +40,7 @@ interface InfoDealer {
 
 const LoiginByDevice: React.FC = () => {
   const [data, setData] = useState<InfoDealer[]>([]);
-  const [dataSearch, setDataSerch] = useState<InfoDealer[]>([]);
+  const [dataSearch, setDataSearch] = useState<InfoDealer[]>([]);
 
   const [total, setTotal] = useState(0);
 
@@ -50,6 +50,7 @@ const LoiginByDevice: React.FC = () => {
     getCountTotalLoginsByDevices().then((data) => {
       data.sort(((a:InfoDealer, b:InfoDealer) => b.total - a.total));
       setData(data);
+      setDataSearch(data);
       setTotal(getTotalDealer(data));
     });
     setShowLoading(false);
@@ -57,9 +58,24 @@ const LoiginByDevice: React.FC = () => {
 
   const onChangeSearch = (value: string) =>{
     if(data.length > 0){
-      let dataFilter = data.filter( d => d.dealer.toLowerCase().includes(value.toLowerCase()))
-      setDataSerch(dataFilter);
-      setTotal(getTotalDealer(dataFilter));
+      let dataFilter;
+      if(value.includes('#') && value.length > 1){//Find by type device
+        let customSearchText = value.substring(1).toLowerCase();
+          if('m'.includes(customSearchText)){ //mobile
+            dataFilter = data.filter( d => d.typeDevice === 'Android' || d.typeDevice == 'Mobile' || d.typeDevice === 'iPhone');
+          }else if('p'.includes(customSearchText)){//pc
+            dataFilter = data.filter( d => d.typeDevice === 'PC');
+          }else if('i'.includes(customSearchText)){//ipad
+            dataFilter = data.filter( d => d.typeDevice === 'iPad-12');
+          }
+          setDataSearch(dataFilter || []);
+          setTotal(getTotalDealer(dataFilter));
+      }else {//find dealer        
+         value = value.replace('#','');
+         dataFilter = data.filter( d => d.dealer.toLowerCase().includes(value.toLowerCase()));
+         setDataSearch(dataFilter || []);
+         setTotal(getTotalDealer(dataFilter));
+      }
     }
   }
 
@@ -90,7 +106,7 @@ const LoiginByDevice: React.FC = () => {
         ""
       )}
 
-        {data.map((d, index) => (
+        {dataSearch.map((d, index) => (
           <IonItem key={index}>
             <IonLabel>{d.dealer}</IonLabel>
             <IonBadge color={colors[index % 6]} slot="end">

@@ -32,7 +32,7 @@ const colors = [
 
 export const DetailTypeKMM: React.FC<ContainerProps> = ({ name }) => {
   const [data, setData] = useState<InfoDealer[]>([]);
-  const [dataSearch, setDataSerch] = useState<InfoDealer[]>([]);
+  const [dataSearch, setDataSearch] = useState<InfoDealer[]>([]);
 
   const [total, setTotal] = useState(0);
   const [showLoading, setShowLoading] = useState(true);
@@ -41,7 +41,7 @@ export const DetailTypeKMM: React.FC<ContainerProps> = ({ name }) => {
     setShowLoading(true);
     getDataKMM(name).then((data) => {
         setData(data);
-        setDataSerch(data)
+        setDataSearch(data)
         setTotal(getTotalDealer(data));
         setShowLoading(false);
     });
@@ -50,7 +50,7 @@ export const DetailTypeKMM: React.FC<ContainerProps> = ({ name }) => {
   const onChangeSearch = (value: string) =>{
     if(data.length > 0){
       let dataFilter = data.filter( d => d.dealer.toLowerCase().includes(value.toLowerCase()))
-      setDataSerch(dataFilter);
+      setDataSearch(dataFilter);
       setTotal(getTotalDealer(dataFilter));
     }
   }
