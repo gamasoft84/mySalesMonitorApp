@@ -12,7 +12,6 @@ import VehicleList from './VehicleList';
 import VehicleDetail from './VehicleDetail';
 //import SessionDetail from './SessionDetail';
 //import MapView from './MapView';
-import About from './About';
 
 interface MainTabsProps { }
 
@@ -27,7 +26,6 @@ const MainTabs: React.FC<MainTabsProps> = () => {
           Use the component prop when your component depends on the RouterComponentProps passed in automatically.
         */}
         <Route path="/tabs/vehicles/:id" component={VehicleDetail} exact={true} />
-        <Route path="/tabs/about" render={() => <About />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="schedule" href="/tabs/schedule">
