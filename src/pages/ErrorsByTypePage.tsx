@@ -48,11 +48,10 @@ const ErrorsByTypePage: React.FC = () => {
       </IonHeader>
       
 
-      <IonContent >
-
+      <IonContent fullscreen>
         <IonHeader collapse="condense">
             <IonToolbar>
-              <IonTitle size="large">Monitor Errors.</IonTitle>
+              <IonTitle size="large">Monitor Errors</IonTitle>
             </IonToolbar>
           </IonHeader>
 
