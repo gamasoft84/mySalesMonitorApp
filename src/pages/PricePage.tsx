@@ -1,12 +1,3 @@
-import {
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonMenuButton,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-} from "@ionic/react";
 import VehicleList from "./VehicleList";
 
 const pricesCars = [
