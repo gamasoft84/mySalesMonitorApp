@@ -95,12 +95,13 @@ const appPages: AppPage[] = [
 
 const Menu: React.FC = () => {
   const location = useLocation();
-  const [checked, setChecked] = useState(false);
-
+  const [darkMode, setDarkMode] = useState(true);
+  const [srcLogo, setSrcLogo] = useState('logo_kia_b.png');
 
 
   const toggleDarkModeHandler = () => {
-    setChecked(!checked);
+    setDarkMode(!darkMode);
+    setSrcLogo(darkMode ? 'logo_kia_w.png': 'logo_kia_b.png');
     document.body.classList.toggle("dark");
   }
 
@@ -109,7 +110,7 @@ const Menu: React.FC = () => {
     <IonMenu contentId="main" type="overlay">
       <IonContent> 
         <IonList id="inbox-list" className="ion-margin-top">
-          <img src="kia_logo.png" />
+          <img src={srcLogo} height="60%" width="60%"/>
 
           <IonListHeader slot="end" color="primary">Monitor MySales V1.0
           </IonListHeader>
@@ -147,7 +148,7 @@ const Menu: React.FC = () => {
                     color="primary"
                   />
                 <IonLabel>Dark Mode</IonLabel>
-                <IonToggle checked={checked} onIonChange={toggleDarkModeHandler} />
+                <IonToggle checked={darkMode} onIonChange={toggleDarkModeHandler} />
             </IonItem>
 
         </IonList>
