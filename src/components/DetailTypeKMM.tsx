@@ -32,13 +32,15 @@ const colors = [
 
 export const DetailTypeKMM: React.FC<ContainerProps> = ({ name }) => {
   const [data, setData] = useState<InfoDealer[]>([]);
+  const [searchText, setSearchText] = useState('');
   const [dataSearch, setDataSearch] = useState<InfoDealer[]>([]);
+
 
   const [total, setTotal] = useState(0);
   const [showLoading, setShowLoading] = useState(true);
 
   useIonViewWillEnter(() => {
-    setShowLoading(true);
+    setSearchText('');
     getDataKMM(name).then((data) => {
         setData(data);
         setDataSearch(data)
@@ -48,6 +50,7 @@ export const DetailTypeKMM: React.FC<ContainerProps> = ({ name }) => {
   });
 
   const onChangeSearch = (value: string) =>{
+    setSearchText(value);
     if(data.length > 0){
       let dataFilter = data.filter( d => d.dealer.toLowerCase().includes(value.toLowerCase()))
       setDataSearch(dataFilter);
@@ -64,7 +67,7 @@ export const DetailTypeKMM: React.FC<ContainerProps> = ({ name }) => {
       />
 
     <IonToolbar>
-      <IonSearchbar  inputmode="text" placeholder="Search ..." animated onIonChange={(e) => onChangeSearch(e.detail.value || '')}></IonSearchbar>
+      <IonSearchbar value={searchText} inputmode="text" placeholder="Search ..." animated onIonChange={(e) => onChangeSearch(e.detail.value || '')}></IonSearchbar>
     </IonToolbar>
 
 

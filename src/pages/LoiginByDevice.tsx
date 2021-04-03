@@ -40,6 +40,7 @@ interface InfoDealer {
 
 const LoiginByDevice: React.FC = () => {
   const [data, setData] = useState<InfoDealer[]>([]);
+  const [searchText, setSearchText] = useState('');
   const [dataSearch, setDataSearch] = useState<InfoDealer[]>([]);
 
   const [total, setTotal] = useState(0);
@@ -47,6 +48,7 @@ const LoiginByDevice: React.FC = () => {
   const [showLoading, setShowLoading] = useState(true);
 
   useIonViewWillEnter(() => {
+    setSearchText('');
     getCountTotalLoginsByDevices().then((data) => {
       data.sort(((a:InfoDealer, b:InfoDealer) => b.total - a.total));
       setData(data);
@@ -57,6 +59,7 @@ const LoiginByDevice: React.FC = () => {
   });
 
   const onChangeSearch = (value: string) =>{
+    setSearchText(value);
     if(data.length > 0){
       let dataFilter;
       if(value.includes('#') && value.length > 1){//Find by type device
@@ -91,7 +94,7 @@ const LoiginByDevice: React.FC = () => {
       </IonHeader>
 
     <IonToolbar>
-      <IonSearchbar  inputmode="text" placeholder="Search ..." animated onIonChange={(e) => onChangeSearch(e.detail.value || '')}></IonSearchbar>
+        <IonSearchbar value={searchText} inputmode="text" placeholder="Search ..." animated onIonChange={(e) => onChangeSearch(e.detail.value || '')}></IonSearchbar>
     </IonToolbar>
 
       <IonContent fullscreen>
