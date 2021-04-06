@@ -43,12 +43,10 @@ const LoiginByDevice: React.FC = () => {
   const [dataSearch, setDataSearch] = useState<InfoDealer[]>([]);
 
   const [total, setTotal] = useState(0);
-
   const [showLoading, setShowLoading] = useState(true);
 
   useIonViewWillEnter(() => {
     getDetailUsersByDealer().then((data) => {
-      data.sort(((a:InfoDealer, b:InfoDealer) => b.total - a.total));
       setData(data);
       setDataSearch(data);
       setTotal(getTotalDealer(data));
