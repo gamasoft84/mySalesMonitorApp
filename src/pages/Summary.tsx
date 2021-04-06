@@ -15,7 +15,7 @@ import {
 } from "@ionic/react";
 
 import React, { useState } from "react";
-import { getCountByTypeKMM } from "../helpers/getDataKMM";
+import { getTotalByDayKMM } from "../helpers/getDataKMM";
 
 import './Summary.scss';
 
@@ -28,14 +28,10 @@ const Summary: React.FunctionComponent = () => {
 
   useIonViewWillEnter(() => {
     setShowLoading(true);
-    getCountByTypeKMM("Leads").then((total) => {
-      setTotalLeads(total);
-    });
-    getCountByTypeKMM("Quotations").then((total) => {
-      setTotalQuotations(total);
-    });
-    getCountByTypeKMM("DriveTests").then((total) => {
-      setTotalTestDrive(total);
+    getTotalByDayKMM().then((data) => {
+      setTotalLeads(data.totalLeads);
+      setTotalQuotations(data.totalQuotations);
+      setTotalTestDrive(data.totalTestsDrive);
     });
     setShowLoading(false);
   }, []);

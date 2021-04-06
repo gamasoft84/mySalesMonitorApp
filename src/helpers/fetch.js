@@ -1,4 +1,6 @@
-const baseUrl = 'https://dashboardkmmmysalesback.azurewebsites.net';
+//const baseUrl = 'http://kmmmysalesdev2.azurewebsites.net/MONITOR';
+const baseUrl = 'http://kmmmysales.azurewebsites.net/MONITOR';
+
 
 const fetchSinToken = ( endpoint, data, method = 'GET' ) => {
 
@@ -20,13 +22,13 @@ const fetchSinToken = ( endpoint, data, method = 'GET' ) => {
 const fetchConToken = ( endpoint, data, method = 'GET' ) => {
 
     const url = `${ baseUrl }/${ endpoint }`;
-    const token = localStorage.getItem('token') || '';
+    const token = 'x5QycR82&';
 
     if ( method === 'GET' ) {
         return fetch( url, {
             method,
             headers: {
-                'x-token': token
+                'API-Key': token
             }
         });
     } else {
@@ -34,7 +36,7 @@ const fetchConToken = ( endpoint, data, method = 'GET' ) => {
             method,
             headers: {
                 'Content-type': 'application/json',
-                'x-token': token
+                'API-Key': token
             },
             body: JSON.stringify( data )
         });

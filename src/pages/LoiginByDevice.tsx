@@ -15,7 +15,7 @@ import {
 } from "@ionic/react";
 
 import { IonBadge, IonItem, IonLabel } from "@ionic/react";
-import { getCountTotalLoginsByDevices } from "../helpers/getDataKMM";
+import { getDetailUsersByDealer } from "../helpers/getDataKMM";
 import {
   phonePortraitOutline,tabletPortraitOutline,laptopOutline
 } from "ionicons/icons";
@@ -34,7 +34,7 @@ const colors = [
 interface InfoDealer {
   dealer: string;
   total: number;
-  typeDevice: string;
+  deviceType: string;
 }
 
 
@@ -47,7 +47,7 @@ const LoiginByDevice: React.FC = () => {
   const [showLoading, setShowLoading] = useState(true);
 
   useIonViewWillEnter(() => {
-    getCountTotalLoginsByDevices().then((data) => {
+    getDetailUsersByDealer().then((data) => {
       data.sort(((a:InfoDealer, b:InfoDealer) => b.total - a.total));
       setData(data);
       setDataSearch(data);
@@ -62,11 +62,11 @@ const LoiginByDevice: React.FC = () => {
       if(value.includes('#') && value.length > 1){//Find by type device
         let customSearchText = value.substring(1).toLowerCase();
           if('m'.includes(customSearchText)){ //mobile
-            dataFilter = data.filter( d => d.typeDevice === 'Android' || d.typeDevice == 'Mobile' || d.typeDevice === 'iPhone');
+            dataFilter = data.filter( d => d.deviceType === 'Android' || d.deviceType == 'Mobile' || d.deviceType === 'iPhone');
           }else if('p'.includes(customSearchText)){//pc
-            dataFilter = data.filter( d => d.typeDevice === 'PC');
+            dataFilter = data.filter( d => d.deviceType === 'PC');
           }else if('i'.includes(customSearchText)){//ipad
-            dataFilter = data.filter( d => d.typeDevice === 'iPad-12');
+            dataFilter = data.filter( d => d.deviceType === 'iPad-12');
           }
           setDataSearch(dataFilter || []);
           setTotal(getTotalDealer(dataFilter));
@@ -114,11 +114,11 @@ const LoiginByDevice: React.FC = () => {
             </IonBadge>
             <IonIcon
                     slot="start"
-                    ios={d.typeDevice === 'Android' || d.typeDevice === 'Mobile' || d.typeDevice === 'iPhone'
-                      ? phonePortraitOutline : d.typeDevice === 'PC' ? laptopOutline: tabletPortraitOutline}
-                    md={d.typeDevice === 'Android' || d.typeDevice === 'Mobile' || d.typeDevice === 'iPhone'
-                      ? phonePortraitOutline : d.typeDevice === 'PC' ? laptopOutline: tabletPortraitOutline}  
-                    color={d.typeDevice === 'iPad-12' ? 'success' : colors[5]}
+                    ios={d.deviceType === 'Android' || d.deviceType === 'Mobile' || d.deviceType === 'iPhone'
+                      ? phonePortraitOutline : d.deviceType === 'PC' ? laptopOutline: tabletPortraitOutline}
+                    md={d.deviceType === 'Android' || d.deviceType === 'Mobile' || d.deviceType === 'iPhone'
+                      ? phonePortraitOutline : d.deviceType === 'PC' ? laptopOutline: tabletPortraitOutline}  
+                    color={d.deviceType === 'iPad-12' ? 'success' : colors[5]}
                     
                   />
           </IonItem>

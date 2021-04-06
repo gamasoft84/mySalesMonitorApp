@@ -1,8 +1,8 @@
-import { fetchSinToken } from "./fetch";
+import { fetchConToken } from "./fetch";
 
 export const getDataKMM = async(type) => {
-    const resp = await fetchSinToken(`/data${type}ByDay`);
-    const data = await resp.json();
+    const resp = await fetchConToken(`/detail${type}`);
+    const data = (await resp.json()).detail;
     if(data && data.length > 1){
         data.sort((a, b) => b.total - a.total);
     }
@@ -10,22 +10,22 @@ export const getDataKMM = async(type) => {
 }
 
 //summary section
-export const getCountByTypeKMM = async(type) => {
-    const resp = await fetchSinToken(`/count${type}ByDay`);
+export const getTotalByDayKMM = async() => {
+    const resp = await fetchConToken('countTotalByDay');
     const total = await resp.json();
     return total;
 }
 
 //Errors section
 export const getCountTotalErrorsByType = async() => {
-    const resp = await fetchSinToken('/countTotalErrorsByType');
-    const data = await resp.json();
+    const resp = await fetchConToken('getTotalErrorsByType');
+    const data = (await resp.json()).detail;
     return data;
 }
 
 //Login section
-export const getCountTotalLoginsByDevices = async() => {
-    const resp = await fetchSinToken('/dataLoginsByTypeDevicesByDay');
-    const data = await resp.json();
+export const getDetailUsersByDealer = async() => {
+    const resp = await fetchConToken('detailUsersByDealer');
+    const data = (await resp.json()).detail;
     return data;
 }
