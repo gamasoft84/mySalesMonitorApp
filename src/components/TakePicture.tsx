@@ -19,7 +19,6 @@ const TakePicture: React.FC = () => {
   const [image, setImage] = useState<string>('');
 
 
-
   const takePicture = async () => {
     const photo = await Camera.getPhoto({
       quality: 90,
@@ -36,12 +35,12 @@ const TakePicture: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Take Image</IonTitle>
+          <IonTitle>Take Picture</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent>
-        {image != "" ? <img src={image}/> : <p>Take a Picture</p>}
+        {image != "" ? <img src={image}/> : <p>Take Picture</p>}
 
         <IonFab vertical="bottom" horizontal="center" slot="fixed">
           <IonFabButton onClick={() => takePicture()}>
