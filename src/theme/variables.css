@@ -234,3 +234,10 @@ body.dark {
 
   --ion-card-background: #1e1e1e;
 }
+
+.customLoading {
+  --background: #fff;
+  --spinner-color: #BB162B;
+
+  color: #222;
+}

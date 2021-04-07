@@ -61,6 +61,7 @@ export const DetailTypeKMM: React.FC<ContainerProps> = ({ name }) => {
   return (
     <div>
       <IonLoading
+        cssClass='customLoading'
         isOpen={showLoading}
         onDidDismiss={() => setShowLoading(false)}
         message={"Loading..."}

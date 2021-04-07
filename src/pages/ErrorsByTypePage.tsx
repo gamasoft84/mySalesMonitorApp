@@ -49,6 +49,7 @@ const ErrorsByTypePage: React.FC = () => {
       </IonHeader>
   
       <IonLoading
+          cssClass='customLoading'
           isOpen={showLoading}
           onDidDismiss={() => setShowLoading(false)}
           message={"Loading..."}

@@ -91,6 +91,7 @@ const LoiginByDevice: React.FC = () => {
     </IonToolbar>
     
     <IonLoading
+          cssClass='customLoading'
           isOpen={showLoading}
           onDidDismiss={() => setShowLoading(false)}
           message={"Loading..."}
