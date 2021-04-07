@@ -21,23 +21,23 @@ import './Summary.scss';
 
 
 const Summary: React.FunctionComponent = () => {
-  const [totalLeads, setTotalLeads] = useState(0);
-  const [totalQuotations, setTotalQuotations] = useState(0);
-  const [totalTestDrive, setTotalTestDrive] = useState(0);
+  const [totalLeads, setTotalLeads] = useState();
+  const [totalQuotations, setTotalQuotations] = useState();
+  const [totalTestDrive, setTotalTestDrive] = useState();
   const [showLoading, setShowLoading] = useState(true);
 
   useIonViewWillEnter(() => {
-    setShowLoading(true);
     getTotalByDayKMM().then((data) => {
       setTotalLeads(data.totalLeads);
       setTotalQuotations(data.totalQuotations);
       setTotalTestDrive(data.totalTestsDrive);
+      setShowLoading(false);
     });
-    setShowLoading(false);
   }, []);
 
   return (
     <IonPage>
+
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
@@ -47,15 +47,15 @@ const Summary: React.FunctionComponent = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent>
-        <IonLoading
+
+      <IonLoading
           isOpen={showLoading}
           onDidDismiss={() => setShowLoading(false)}
           message={"Loading..."}
         />
 
-
-        <IonCard routerLink={"/page/Leads"} className="card-center" color="">
+      <IonContent>
+        <IonCard routerLink={"/page/Leads"} className="card-center">
           <img src="Lead.png" height="100" width="90" className="ion-margin-top"/>
           <IonCardHeader>
             <IonCardSubtitle>Leads</IonCardSubtitle>

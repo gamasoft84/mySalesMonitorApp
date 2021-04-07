@@ -26,19 +26,19 @@ interface InfoErrors {
 const ErrorsByTypePage: React.FC = () => {
   const [dataCritic, setDataCritic] = useState<InfoErrors[]>([]);
   const [dataNoCritic, setDataNoCritic] = useState<InfoErrors[]>([]);
-
   const [showLoading, setShowLoading] = useState(true);
 
   useIonViewWillEnter(() => {
     getCountTotalErrorsByType().then((data) => {      
       setDataCritic(data.filter((d:InfoErrors) => d.isCritic === 'Y'));
       setDataNoCritic(data.filter((d:InfoErrors) => d.isCritic === 'N'));
+      setShowLoading(false);
     });
-    setShowLoading(false);
   });
 
   return (
     <IonPage>
+
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
@@ -47,7 +47,12 @@ const ErrorsByTypePage: React.FC = () => {
           <IonTitle>Monitor Errors</IonTitle>
         </IonToolbar>
       </IonHeader>
-      
+  
+      <IonLoading
+          isOpen={showLoading}
+          onDidDismiss={() => setShowLoading(false)}
+          message={"Loading..."}
+        /> 
 
       <IonContent fullscreen>
         <IonHeader collapse="condense">
@@ -64,6 +69,7 @@ const ErrorsByTypePage: React.FC = () => {
             </IonBadge>
           </IonItem>
         ))}
+
         {dataNoCritic.map((d, index) => (
           <IonItem key={index}>
             <IonLabel className="ion-text-wrap">{d.message}</IonLabel>
@@ -73,12 +79,6 @@ const ErrorsByTypePage: React.FC = () => {
           </IonItem>
         ))}
       </IonContent>
-
-      <IonLoading
-          isOpen={showLoading}
-          onDidDismiss={() => setShowLoading(false)}
-          message={"Loading..."}
-        />
 
     </IonPage>
   );
