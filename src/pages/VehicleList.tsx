@@ -4,17 +4,11 @@ import VehicleItem from '../components/VehicleItem';
 import { Vehicle } from '../models/Vehicle';
 import './VehicleList.scss';
 
-interface OwnProps { };
-
 interface StateProps {
   vehicles: Vehicle[];
 };
 
-interface DispatchProps { };
-
-interface SpeakerListProps extends OwnProps, StateProps, DispatchProps { };
-
-const VehicleList: React.FC<SpeakerListProps> = ({ vehicles }) => {
+const VehicleList: React.FC<StateProps> = ({ vehicles }) => {
 
   return (
     <IonPage id="speaker-list">

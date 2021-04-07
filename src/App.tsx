@@ -69,7 +69,6 @@ const App: React.FC = () => {
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>
-
     </IonApp>
   );
 };
