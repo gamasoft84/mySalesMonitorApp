@@ -12,7 +12,7 @@ import {
   IonMenuButton,
 } from "@ionic/react";
 import { camera } from "ionicons/icons";
-import { Plugins, CameraResultType } from "@capacitor/core";
+import { Plugins, CameraResultType, CameraDirection } from "@capacitor/core";
 const { Camera } = Plugins;
 
 const TakePicture: React.FC = () => {
@@ -21,11 +21,15 @@ const TakePicture: React.FC = () => {
 
   const takePicture = async () => {
     const photo = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: true,
-      resultType: CameraResultType.Uri,
+      quality: 30,
+      allowEditing: false,
+      saveToGallery: true,
+      preserveAspectRatio: true,
+      resultType: CameraResultType.Base64
     });
-    setImage(photo.webPath || "");
+    let base64Image = 'data:image/jpeg;base64,' + photo.base64String;
+
+    setImage(base64Image);
   };
 
   return (
