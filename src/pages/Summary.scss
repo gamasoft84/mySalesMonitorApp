@@ -4,3 +4,10 @@
   margin: 20 auto;
   text-align: center;
 }
+
+.customLoading {
+  --background: #222;
+  --spinner-color: #BB162B;
+
+  color: #fff;
+}

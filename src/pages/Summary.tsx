@@ -49,6 +49,7 @@ const Summary: React.FunctionComponent = () => {
 
 
       <IonLoading
+          cssClass='customLoading'
           isOpen={showLoading}
           onDidDismiss={() => setShowLoading(false)}
           message={"Loading..."}

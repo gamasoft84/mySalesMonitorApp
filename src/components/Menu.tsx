@@ -100,9 +100,16 @@ const Menu: React.FC = () => {
 
 
   const toggleDarkModeHandler = () => {
-    setDarkMode(!darkMode);
-    setSrcLogo(darkMode ? 'logo_kia_w.png': 'logo_kia_b.png');
-    document.body.classList.toggle("dark");
+    if(darkMode){
+      setDarkMode(false);
+      setSrcLogo('logo_kia_b.png');
+      document.body.classList.toggle("dark");
+    }else{
+      setDarkMode(true);
+      setSrcLogo('logo_kia_w.png');
+      document.body.classList.toggle("dark");
+    }
+    
   }
 
 
