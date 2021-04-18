@@ -15,10 +15,10 @@ import {
 } from "@ionic/react";
 
 import { IonBadge, IonItem, IonLabel } from "@ionic/react";
-import { getDetailUsersByDealer } from "../helpers/getDataKMM";
 import {
   phonePortraitOutline,tabletPortraitOutline,laptopOutline
 } from "ionicons/icons";
+import { getDetailUsersByDealer } from "../helpers/getDataKMM";
 import { getTotalDealer } from "../helpers/utils";
 
 const colors = [
@@ -37,12 +37,10 @@ interface InfoDealer {
   deviceType: string;
 }
 
-
 const LoiginByDevice: React.FC = () => {
   const [data, setData] = useState<InfoDealer[]>([]);
   const [dataSearch, setDataSearch] = useState<InfoDealer[]>([]);
-
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState();
   const [showLoading, setShowLoading] = useState(true);
 
   useIonViewWillEnter(() => {
@@ -50,8 +48,8 @@ const LoiginByDevice: React.FC = () => {
       setData(data);
       setDataSearch(data);
       setTotal(getTotalDealer(data));
+      setShowLoading(false);
     });
-    setShowLoading(false);
   });
 
   const onChangeSearch = (value: string) =>{
@@ -91,18 +89,25 @@ const LoiginByDevice: React.FC = () => {
     <IonToolbar>
       <IonSearchbar  inputmode="text" placeholder="Search ..." animated onIonChange={(e) => onChangeSearch(e.detail.value || '')}></IonSearchbar>
     </IonToolbar>
+    
+    <IonLoading
+          cssClass='customLoading'
+          isOpen={showLoading}
+          onDidDismiss={() => setShowLoading(false)}
+          message={"Loading..."}
+        />
 
       <IonContent fullscreen>
-      {!showLoading ? (
-        <IonItem>
-          <IonLabel>TOTAL</IonLabel>
-          <IonBadge color="success" slot="end">
-            {total}
-          </IonBadge>
-        </IonItem>
-      ) : (
-        ""
-      )}
+        {!showLoading ? (
+          <IonItem>
+            <IonLabel>TOTAL</IonLabel>
+            <IonBadge color="success" slot="end">
+              {total}
+            </IonBadge>
+          </IonItem>
+        ) : (
+          ""
+        )}
 
         {dataSearch.map((d, index) => (
           <IonItem key={index}>
@@ -116,19 +121,12 @@ const LoiginByDevice: React.FC = () => {
                       ? phonePortraitOutline : d.deviceType === 'PC' ? laptopOutline: tabletPortraitOutline}
                     md={d.deviceType === 'Android' || d.deviceType === 'Mobile' || d.deviceType === 'iPhone'
                       ? phonePortraitOutline : d.deviceType === 'PC' ? laptopOutline: tabletPortraitOutline}  
-                    color={d.deviceType === 'iPad-12' ? 'success' : colors[5]}
-                    
+                    color={d.deviceType === 'iPad-12' ? 'success' : colors[5]}             
                   />
           </IonItem>
         ))}
         
       </IonContent>
-
-      <IonLoading
-          isOpen={showLoading}
-          onDidDismiss={() => setShowLoading(false)}
-          message={"Loading..."}
-        />
 
     </IonPage>
   );

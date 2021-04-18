@@ -19,26 +19,26 @@ interface InfoErrors {
   message: string;
   total: number;
   totalMsgAllowed: number;
-  critic: Boolean;
+  isCritic: string;
 }
 
 
 const ErrorsByTypePage: React.FC = () => {
   const [dataCritic, setDataCritic] = useState<InfoErrors[]>([]);
   const [dataNoCritic, setDataNoCritic] = useState<InfoErrors[]>([]);
-
   const [showLoading, setShowLoading] = useState(true);
 
   useIonViewWillEnter(() => {
-    getCountTotalErrorsByType().then((data) => {
-      setDataCritic(data.filter((d:InfoErrors) => d.critic));
-      setDataNoCritic(data.filter((d:InfoErrors) => !d.critic));
+    getCountTotalErrorsByType().then((data) => {      
+      setDataCritic(data.filter((d:InfoErrors) => d.isCritic === 'Y'));
+      setDataNoCritic(data.filter((d:InfoErrors) => d.isCritic === 'N'));
+      setShowLoading(false);
     });
-    setShowLoading(false);
   });
 
   return (
     <IonPage>
+
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
@@ -47,7 +47,13 @@ const ErrorsByTypePage: React.FC = () => {
           <IonTitle>Monitor Errors</IonTitle>
         </IonToolbar>
       </IonHeader>
-      
+  
+      <IonLoading
+          cssClass='customLoading'
+          isOpen={showLoading}
+          onDidDismiss={() => setShowLoading(false)}
+          message={"Loading..."}
+        /> 
 
       <IonContent fullscreen>
         <IonHeader collapse="condense">
@@ -57,28 +63,23 @@ const ErrorsByTypePage: React.FC = () => {
           </IonHeader>
 
         {dataCritic.map((d, index) => (
-          <IonItem key={index} color={d.totalMsgAllowed<d.total && d.critic ? 'warning': ''}>
+          <IonItem key={index} color={d.totalMsgAllowed<d.total && d.isCritic ? 'warning': ''}>
             <IonLabel className="ion-text-wrap">{d.message}</IonLabel>
-            <IonBadge color={d.critic ? 'danger': 'success'} slot="end">
+            <IonBadge color={d.isCritic === 'Y' ? 'danger': 'success'} slot="end">
               {d.total}
             </IonBadge>
           </IonItem>
         ))}
+
         {dataNoCritic.map((d, index) => (
-          <IonItem key={index} color={d.totalMsgAllowed<d.total && d.critic ? 'warning': ''}>
+          <IonItem key={index}>
             <IonLabel className="ion-text-wrap">{d.message}</IonLabel>
-            <IonBadge color={d.critic ? 'danger': 'success'} slot="end">
+            <IonBadge color={d.isCritic === 'Y' ? 'danger': 'success'} slot="end">
               {d.total}
             </IonBadge>
           </IonItem>
         ))}
       </IonContent>
-
-      <IonLoading
-          isOpen={showLoading}
-          onDidDismiss={() => setShowLoading(false)}
-          message={"Loading..."}
-        />
 
     </IonPage>
   );

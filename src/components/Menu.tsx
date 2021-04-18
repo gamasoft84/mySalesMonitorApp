@@ -97,14 +97,21 @@ const appPages: AppPage[] = [
 
 const Menu: React.FC = () => {
   const location = useLocation();
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [srcLogo, setSrcLogo] = useState('logo_kia_b.png');
 
 
   const toggleDarkModeHandler = () => {
-    setDarkMode(!darkMode);
-    setSrcLogo(darkMode ? 'logo_kia_w.png': 'logo_kia_b.png');
-    document.body.classList.toggle("dark");
+    if(darkMode){
+      setDarkMode(false);
+      setSrcLogo('logo_kia_b.png');
+      document.body.classList.toggle("dark");
+    }else{
+      setDarkMode(true);
+      setSrcLogo('logo_kia_w.png');
+      document.body.classList.toggle("dark");
+    }
+    
   }
 
 
