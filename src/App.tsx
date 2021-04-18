@@ -30,6 +30,7 @@ import PricePage from './pages/PricePage';
 import TakePicture from './components/TakePicture';
 import LoiginByDevice from './pages/LoiginByDevice';
 import ErrorsByTypePage from './pages/ErrorsByTypePage';
+import DealersPage from './pages/Dealers';
 
 const App: React.FC = () => {
   return (
@@ -64,7 +65,10 @@ const App: React.FC = () => {
             </Route>
             <Route path="/page/TakePicture" exact={true}>
               <TakePicture/>
-            </Route>        
+            </Route> 
+            <Route path="/page/DealersPage" exact={true}>
+              <DealersPage/>
+            </Route>      
             <Route path="/tabs" render={() => <MainTabs />} />
           </IonRouterOutlet>
         </IonSplitPane>

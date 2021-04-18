@@ -27,7 +27,9 @@ import {
   cameraOutline,
   cameraSharp,
   moonOutline,
-  moonSharp
+  moonSharp,
+  businessOutline,
+  businessSharp
 } from "ionicons/icons";
 import { useState } from "react";
 
@@ -86,10 +88,10 @@ const appPages: AppPage[] = [
     mdIcon: cashSharp,
   },
   {
-    title: "Take Picture",
-    url: "/page/TakePicture",
-    iosIcon: cameraOutline,
-    mdIcon: cameraSharp,
+    title: "Info Dealers",
+    url: "/page/DealersPage",
+    iosIcon: businessOutline,
+    mdIcon: businessSharp,
   }
 ];
 
