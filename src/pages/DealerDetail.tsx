@@ -12,18 +12,25 @@ import {
   IonToolbar,
   useIonViewWillEnter,
 } from "@ionic/react";
-
-import { IonItem, IonLabel } from "@ionic/react";
 import { InfoDealer } from "../data/IDealer";
+import { useParams } from "react-router";
 
-const DealersPage: React.FC = () => {
-  const [data, setData] = useState<InfoDealer[]>([]);
+interface Params{
+  id: string
+}
+
+const DealerDetail: React.FC = () => {
 
   const [showLoading, setShowLoading] = useState(true);
+  const [dealer, setDealer] = useState<InfoDealer>();
+
+
+  const params = useParams<Params>();
 
   useIonViewWillEnter(() => {
-    var dealersDataSort = dealersData.sort((a,b) => a.dlrName.localeCompare(b.dlrName) )
-    setData(dealersDataSort);       
+    console.log(params.id);
+    var dealer = dealersData.filter(d => d.dlrCd === params.id).pop();
+    setDealer(dealer);  
     setShowLoading(false);
   });
 
@@ -34,7 +41,7 @@ const DealersPage: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Info Dealers</IonTitle>
+          <IonTitle>Detail Dealers</IonTitle>
         </IonToolbar>
       </IonHeader>
       
@@ -42,18 +49,16 @@ const DealersPage: React.FC = () => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
             <IonToolbar>
-              <IonTitle size="large">Info Dealers</IonTitle>
+              <IonTitle size="large">Detail Dealers</IonTitle>
             </IonToolbar>
           </IonHeader>
 
-        {data.map((d, index) => (
-          <IonItem key={index} routerLink={`/page/dealer/${d.dlrCd}`}>
-            <IonLabel className="ion-text-wrap">{d.dlrName}</IonLabel>  
-            <IonLabel className="ion-text-wrap">{d.dlrCd}</IonLabel>  
-            <IonLabel className="ion-text-wrap">{d.adrStateNm}</IonLabel>            
-            <IonLabel className="ion-text-wrap">{d.adrCityNm}</IonLabel>            
-          </IonItem>
-        ))}
+        <h1>{dealer?.dlrName}</h1>
+        <h3>{dealer?.dlrCd}</h3>
+        <h3>{dealer?.adrStateNm}</h3>
+        <h3>{dealer?.adrCityNm}</h3>
+        <h3>{dealer?.latitude}</h3>
+        <h3>{dealer?.longitude}</h3 >
       </IonContent>
 
       <IonLoading
@@ -66,4 +71,4 @@ const DealersPage: React.FC = () => {
   );
 };
 
-export default DealersPage;
+export default DealerDetail;
