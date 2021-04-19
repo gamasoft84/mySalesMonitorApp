@@ -633,6 +633,15 @@ const dealersData : InfoDealer[]=
 	  "longitude": "-99.08221819836864"
 	},
 	{
+		"dlrName": "Kia Polanco",
+		"dlrCd": "SWR001",
+		"postCd": "11000",
+		"adrStateNm": "CDMX",
+		"adrCityNm": "Miguel Hidalgo",
+		"latitude": "19.420824613045703",
+		"longitude": "-99.08221819836864"
+	  },
+	{
 	  "dlrName": "Kia Primavera",
 	  "dlrCd": "AMS01",
 	  "postCd": "62290",
