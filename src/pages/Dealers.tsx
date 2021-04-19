@@ -19,7 +19,6 @@ import { InfoDealer } from "../data/IDealer";
 
 const DealersPage: React.FC = () => {
   const [data, setData] = useState<InfoDealer[]>([]);
-  const [searchText, setSearchText] = useState('');
   const [dataSearch, setDataSearch] = useState<InfoDealer[]>([]);
 
   const [showLoading, setShowLoading] = useState(true);
@@ -27,11 +26,11 @@ const DealersPage: React.FC = () => {
   useIonViewWillEnter(() => {
     var dealersDataSort = dealersData.sort((a,b) => a.dlrName.localeCompare(b.dlrName) )
     setData(dealersDataSort);       
+    setDataSearch(dealersDataSort);       
     setShowLoading(false);
   });
 
   const onChangeSearch = (value: string) =>{
-    setSearchText(value);
     if(data.length > 0){
       let dataFilter = data.filter( d => 
         d.dlrName.toLowerCase().includes(value.toLowerCase())  ||  d.adrStateNm.toLowerCase().includes(value.toLowerCase()))

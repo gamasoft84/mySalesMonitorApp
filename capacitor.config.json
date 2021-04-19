@@ -6,7 +6,7 @@
   "webDir": "build",
   "plugins": {
     "SplashScreen": {
-      "launchShowDuration": 3
+      "launchShowDuration": 0
     },
     "PushNotifications": {
       "presentationOptions": [
