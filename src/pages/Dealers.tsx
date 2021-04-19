@@ -11,6 +11,7 @@ import {
   IonTitle,
   IonToolbar,
   useIonViewWillEnter,
+  IonSearchbar,
 } from "@ionic/react";
 
 import { IonItem, IonLabel } from "@ionic/react";
@@ -18,6 +19,8 @@ import { InfoDealer } from "../data/IDealer";
 
 const DealersPage: React.FC = () => {
   const [data, setData] = useState<InfoDealer[]>([]);
+  const [searchText, setSearchText] = useState('');
+  const [dataSearch, setDataSearch] = useState<InfoDealer[]>([]);
 
   const [showLoading, setShowLoading] = useState(true);
 
@@ -26,6 +29,15 @@ const DealersPage: React.FC = () => {
     setData(dealersDataSort);       
     setShowLoading(false);
   });
+
+  const onChangeSearch = (value: string) =>{
+    setSearchText(value);
+    if(data.length > 0){
+      let dataFilter = data.filter( d => 
+        d.dlrName.toLowerCase().includes(value.toLowerCase())  ||  d.adrStateNm.toLowerCase().includes(value.toLowerCase()))
+      setDataSearch(dataFilter);
+    }
+  }
 
   return (
     <IonPage>
@@ -38,6 +50,9 @@ const DealersPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       
+      <IonToolbar>
+      <IonSearchbar  inputmode="text" placeholder="Search ..." animated onIonChange={(e) => onChangeSearch(e.detail.value || '')}></IonSearchbar>
+    </IonToolbar>
 
       <IonContent fullscreen>
         <IonHeader collapse="condense">
@@ -46,12 +61,10 @@ const DealersPage: React.FC = () => {
             </IonToolbar>
           </IonHeader>
 
-        {data.map((d, index) => (
+        {dataSearch.map((d, index) => (
           <IonItem key={index} routerLink={`/page/dealer/${d.dlrCd}`}>
             <IonLabel className="ion-text-wrap">{d.dlrName}</IonLabel>  
-            <IonLabel className="ion-text-wrap">{d.dlrCd}</IonLabel>  
             <IonLabel className="ion-text-wrap">{d.adrStateNm}</IonLabel>            
-            <IonLabel className="ion-text-wrap">{d.adrCityNm}</IonLabel>            
           </IonItem>
         ))}
       </IonContent>

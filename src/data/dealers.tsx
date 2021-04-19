@@ -69,7 +69,7 @@ const dealersData : InfoDealer[]=
 	  "dlrName": "Kia Baja Sur",
 	  "dlrCd": "HSR01",
 	  "postCd": "23098",
-	  "adrStateNm": "Baja California S",
+	  "adrStateNm": "Baja California Sur",
 	  "adrCityNm": "La Paz",
 	  "latitude": "19.420824613045703",
 	  "longitude": "-99.08221819836864"
@@ -114,7 +114,7 @@ const dealersData : InfoDealer[]=
 	  "dlrName": "Kia Cabos",
 	  "dlrCd": "ESR01",
 	  "postCd": "23400",
-	  "adrStateNm": "Baja California S",
+	  "adrStateNm": "Baja California Sur",
 	  "adrCityNm": "Los Cabos",
 	  "latitude": "19.420824613045703",
 	  "longitude": "-99.08221819836864"

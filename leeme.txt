@@ -15,4 +15,9 @@ Ejemplo
 C:\tecnologias\ionic\app\sideMenuApp\android\
 C:\tecnologias\ionic\app\sideMenuApp\android\app\build\outputs\apk\debug\app-debug.apk
 
+ionic start
+ionic cap run ios -l --external
+	http://localhost:8100/page/DealersPage
+ionic build 
+npx cap sync
 
