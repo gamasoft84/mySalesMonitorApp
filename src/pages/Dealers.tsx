@@ -62,6 +62,7 @@ const DealersPage: React.FC = () => {
 
         {dataSearch.map((d, index) => (
           <IonItem key={index} routerLink={`/page/dealer/${d.dlrCd}`}>
+            <IonLabel className="ion-text-wrap">{index + 1}</IonLabel>  
             <IonLabel className="ion-text-wrap">{d.dlrName}</IonLabel>  
             <IonLabel className="ion-text-wrap">{d.adrStateNm}</IonLabel>            
           </IonItem>
