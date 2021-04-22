@@ -33,12 +33,12 @@ const DealerDetail: React.FC = () => {
 
   useEffect(() => {
     console.log(params);
-    
+
     console.log(params.id);
     var dealer = dealersData.filter((d) => d.dlrCd === params.id).pop();
     setDealer(dealer);
     setShowLoading(false);
-  },[params.id]);
+  }, [params.id]);
 
   return (
     <IonPage>
@@ -47,40 +47,43 @@ const DealerDetail: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>{dealer?.dlrName}</IonTitle>
+          <IonTitle>{dealer?.dlrNm}</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Detail Dealer</IonTitle>
+            <IonTitle size="large">{dealer?.dlrNm}</IonTitle>
           </IonToolbar>
         </IonHeader>
 
-
         <IonCard>
+          {dealer?.dlrCd && dealer?.dlrCd == "DCL01" ? (
+            <img src="https://lh3.googleusercontent.com/p/AF1QipPiKjgRDtJQG6IZhbk8rHRPwtsP7FYeRA2rhMwH=s1600-w400" />
+          ) : (
+            ""
+          )}
 
-        {dealer?.dlrCd && dealer?.dlrCd == 'SWR001' ? 
-        <img src='https://www.techgames.com.mx/wp-content/uploads/2020/07/KIA-Polanco-Showroom.jpg'/>
-        : ''}
-
-        <IonCardHeader>
+          <IonCardHeader>
             B20VA<IonText color="success">{dealer?.dlrCd}</IonText>
-          <IonCardSubtitle>
-            {dealer?.adrCityNm}, {dealer?.adrStateNm}.
-          </IonCardSubtitle>
-          <IonCardTitle>
-          
-          </IonCardTitle>
-        </IonCardHeader>
+            <IonCardSubtitle>
+              <p>GROUP: {dealer?.grpNm}</p>
+              <p>DMS: {dealer?.dmsNm}</p>
+              <p>CRM: {dealer?.crmNm ? dealer?.crmNm : "-"}</p>
+              <p>
+                ADDRESS: {dealer?.address}, {dealer?.adrCityNm},{" "}
+                {dealer?.postCd} {dealer?.adrStateNm}.
+              </p>
+              <p>TELEPHONE: {dealer?.telephone}</p>
+              <p>RFC: {dealer?.rfc}</p>
+            </IonCardSubtitle>
+            <IonCardTitle></IonCardTitle>
+          </IonCardHeader>
 
-        <IonCardContent>
-        </IonCardContent>
-      </IonCard>
-
+          <IonCardContent></IonCardContent>
+        </IonCard>
       </IonContent>
-
 
       <IonLoading
         isOpen={showLoading}

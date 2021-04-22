@@ -1,10 +1,14 @@
 
 export interface InfoDealer {
-    dlrName: string,
-    dlrCd: string,
-    postCd: string,
-    adrStateNm: string,
-    adrCityNm: string,
-    latitude: string,
-    longitude: string
+    dlrCd : string;
+    dlrNm : string;
+    dmsNm : string;
+    grpNm : string;
+    crmNm : string | null;
+    postCd : string;
+    adrStateNm : string;
+    adrCityNm : string;
+    rfc : string;
+    telephone : string;
+    address : string;
   }

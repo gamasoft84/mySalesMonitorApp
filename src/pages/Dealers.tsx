@@ -12,6 +12,9 @@ import {
   IonToolbar,
   useIonViewWillEnter,
   IonSearchbar,
+  IonGrid,
+  IonCol,
+  IonRow,
 } from "@ionic/react";
 
 import { IonItem, IonLabel } from "@ionic/react";
@@ -24,7 +27,7 @@ const DealersPage: React.FC = () => {
   const [showLoading, setShowLoading] = useState(true);
 
   useIonViewWillEnter(() => {
-    var dealersDataSort = dealersData.sort((a,b) => a.dlrName.localeCompare(b.dlrName) )
+    var dealersDataSort = dealersData.sort((a,b) => a.dlrNm.localeCompare(b.dlrNm) )
     setData(dealersDataSort);       
     setDataSearch(dealersDataSort);       
     setShowLoading(false);
@@ -33,7 +36,12 @@ const DealersPage: React.FC = () => {
   const onChangeSearch = (value: string) =>{
     if(data.length > 0){
       let dataFilter = data.filter( d => 
-        d.dlrName.toLowerCase().includes(value.toLowerCase())  ||  d.adrStateNm.toLowerCase().includes(value.toLowerCase()))
+        d.dlrNm.toLowerCase().includes(value.toLowerCase())  ||  
+        d.adrStateNm.toLowerCase().includes(value.toLowerCase()) ||
+        d.grpNm.toLowerCase().includes(value.toLowerCase()) ||
+        d.dmsNm.toLowerCase().includes(value.toLowerCase()) ||
+        d.crmNm?.toLowerCase().includes(value.toLowerCase())
+        )
       setDataSearch(dataFilter);
     }
   }
@@ -59,11 +67,21 @@ const DealersPage: React.FC = () => {
               <IonTitle size="large">Info Dealers</IonTitle>
             </IonToolbar>
           </IonHeader>
-
+    
+          <IonItem>
+            <IonLabel className="ion-text-wrap" color="secondary">DEALER</IonLabel>  
+            <IonLabel className="ion-text-wrap" color="secondary">STATE</IonLabel>
+            <IonLabel className="ion-text-wrap ion-hide-xs-down" color="secondary">GROUP</IonLabel> 
+            <IonLabel className="ion-text-wrap ion-hide-sm-down" color="secondary">DMS</IonLabel>            
+            <IonLabel className="ion-text-wrap ion-hide-sm-down" color="secondary">CRM</IonLabel>            
+          </IonItem>
         {dataSearch.map((d, index) => (
           <IonItem key={index} routerLink={`/page/dealer/${d.dlrCd}`}>
-            <IonLabel className="ion-text-wrap">{d.dlrName}</IonLabel>  
-            <IonLabel className="ion-text-wrap">{d.adrStateNm}</IonLabel>            
+            <IonLabel className="ion-text-wrap">{d.dlrNm}</IonLabel>  
+            <IonLabel className="ion-text-wrap">{d.adrStateNm}</IonLabel>
+            <IonLabel className="ion-text-wrap ion-hide-xs-down">{d.grpNm}</IonLabel> 
+            <IonLabel className="ion-text-wrap ion-hide-sm-down">{d.dmsNm}</IonLabel>            
+            <IonLabel className="ion-text-wrap ion-hide-sm-down">{d.crmNm}</IonLabel>            
           </IonItem>
         ))}
       </IonContent>
