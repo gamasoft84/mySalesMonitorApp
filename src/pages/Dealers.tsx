@@ -23,13 +23,15 @@ import { InfoDealer } from "../data/IDealer";
 const DealersPage: React.FC = () => {
   const [data, setData] = useState<InfoDealer[]>([]);
   const [dataSearch, setDataSearch] = useState<InfoDealer[]>([]);
+  const [totalDealers, setTotalDealers] = useState(0);
 
   const [showLoading, setShowLoading] = useState(true);
 
   useIonViewWillEnter(() => {
-    var dealersDataSort = dealersData.sort((a,b) => a.dlrNm.localeCompare(b.dlrNm) )
-    setData(dealersDataSort);       
-    setDataSearch(dealersDataSort);       
+    //var dealersDataSort = dealersData.sort((a,b) => a.dlrNm.localeCompare(b.dlrNm) )
+    setData(dealersData);       
+    setDataSearch(dealersData);
+    setTotalDealers(dealersData.length);       
     setShowLoading(false);
   });
 
@@ -42,6 +44,7 @@ const DealersPage: React.FC = () => {
         d.dmsNm.toLowerCase().includes(value.toLowerCase()) ||
         d.crmNm?.toLowerCase().includes(value.toLowerCase())
         )
+      setTotalDealers(dataFilter.length);
       setDataSearch(dataFilter);
     }
   }
@@ -53,7 +56,7 @@ const DealersPage: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Info Dealers</IonTitle>
+          <IonTitle>Dealers ({totalDealers})</IonTitle>
         </IonToolbar>
       </IonHeader>
       
@@ -64,7 +67,7 @@ const DealersPage: React.FC = () => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
             <IonToolbar>
-              <IonTitle size="large">Info Dealers</IonTitle>
+              <IonTitle size="large">Dealers ({totalDealers})</IonTitle>
             </IonToolbar>
           </IonHeader>
     
