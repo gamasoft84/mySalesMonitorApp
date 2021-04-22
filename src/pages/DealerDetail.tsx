@@ -10,13 +10,15 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  useIonViewWillEnter,
   IonText,
   IonCard,
   IonCardContent,
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonGrid,
+  IonRow,
+  IonCol,
 } from "@ionic/react";
 import { InfoDealer } from "../data/IDealer";
 import { useParams } from "react-router";
@@ -66,17 +68,37 @@ const DealerDetail: React.FC = () => {
           )}
 
           <IonCardHeader>
-            B20VA<IonText color="success">{dealer?.dlrCd}</IonText>
             <IonCardSubtitle>
-              <p>GROUP: {dealer?.grpNm}</p>
-              <p>DMS: {dealer?.dmsNm}</p>
-              <p>CRM: {dealer?.crmNm ? dealer?.crmNm : "-"}</p>
-              <p>
-                ADDRESS: {dealer?.address}, {dealer?.adrCityNm},{" "}
-                {dealer?.postCd} {dealer?.adrStateNm}.
-              </p>
-              <p>TELEPHONE: {dealer?.telephone}</p>
-              <p>RFC: {dealer?.rfc}</p>
+              <IonGrid>
+              <IonRow>
+                  <IonCol><IonText color="primary">DEALER CODE</IonText></IonCol>
+                  <IonCol>B20VA<IonText color="success">{dealer?.dlrCd}</IonText></IonCol>
+                </IonRow>
+                <IonRow>
+                  <IonCol><IonText color="primary">GROUP</IonText></IonCol>
+                  <IonCol>{dealer?.grpNm}</IonCol>
+                </IonRow>
+                <IonRow>
+                  <IonCol><IonText color="primary">DMS</IonText></IonCol>
+                  <IonCol>{dealer?.dmsNm}</IonCol>
+                </IonRow>
+                <IonRow>
+                  <IonCol><IonText color="primary">CRM</IonText></IonCol>
+                  <IonCol>{dealer?.crmNm}</IonCol>
+                </IonRow>
+                <IonRow>
+                  <IonCol><IonText color="primary">ADDRESS</IonText></IonCol>
+                  <IonCol>{dealer?.address}, {dealer?.adrCityNm},{" "}{dealer?.postCd} {dealer?.adrStateNm}.</IonCol>
+                </IonRow>
+                <IonRow>
+                  <IonCol><IonText color="primary">TELEPHONE</IonText></IonCol>
+                  <IonCol>{dealer?.telephone}</IonCol>
+                </IonRow>
+                <IonRow>
+                  <IonCol><IonText color="primary">RFC</IonText></IonCol>
+                  <IonCol>{dealer?.rfc}</IonCol>
+                </IonRow>
+              </IonGrid>
             </IonCardSubtitle>
             <IonCardTitle></IonCardTitle>
           </IonCardHeader>
