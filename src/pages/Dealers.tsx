@@ -11,48 +11,35 @@ import {
   IonTitle,
   IonToolbar,
   useIonViewWillEnter,
-  IonSearchbar,
-  IonGrid,
-  IonCol,
-  IonRow,
+  IonSearchbar
 } from "@ionic/react";
 
 import { IonItem, IonLabel } from "@ionic/react";
 import { InfoDealer } from "../data/IDealer";
 
 const DealersPage: React.FC = () => {
-  const [data, setData] = useState<InfoDealer[]>([]);
   const [dataSearch, setDataSearch] = useState<InfoDealer[]>([]);
   const [totalDealers, setTotalDealers] = useState(0);
   const [searchText, setSearchText] = useState('');
 
   const [showLoading, setShowLoading] = useState(true);
 
-  useIonViewWillEnter(() => {
-    //var dealersDataSort = dealersData.sort((a,b) => a.dlrNm.localeCompare(b.dlrNm) )
-    setData(dealersData);       
-    if(searchText){      
-      let dataFilter = addFilter(searchText);
-      setDataSearch(dataFilter);
-      setTotalDealers(dataFilter.length);
-    }else{
-      setDataSearch(dealersData);
-      setTotalDealers(dealersData.length);       
-    }
+  useIonViewWillEnter(() => {      
+    let dealers = searchText ? addFilter(searchText) : dealersData;
+    setDataSearch(dealers);
+    setTotalDealers(dealers.length);
     setShowLoading(false); 
   });
 
   const onChangeSearch = (value: string) =>{
-    if(data.length > 0){
       let dataFilter = addFilter(value);
       setTotalDealers(dataFilter.length);
       setDataSearch(dataFilter);
       setSearchText(value);
-    }
   }
 
-  const addFilter = (value: string) =>{
-    return  data.filter( d => 
+  const addFilter = (value: string) =>{    
+    return  dealersData.filter( d => 
       d.dlrNm.toLowerCase().includes(value.toLowerCase())  ||  
       d.adrStateNm.toLowerCase().includes(value.toLowerCase()) ||
       d.grpNm.toLowerCase().includes(value.toLowerCase()) ||
@@ -68,7 +55,7 @@ const DealersPage: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Dealers ({totalDealers})   {searchText}</IonTitle>
+          <IonTitle>Dealers ({totalDealers})</IonTitle>
         </IonToolbar>
       </IonHeader>
       
