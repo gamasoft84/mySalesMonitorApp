@@ -407,6 +407,19 @@ const dealersData : InfoDealer [] =
         "address": " Av Paseo de los Leones 10500, Cumbres Elite 7o. Sector"
     },
     {
+        "dlrCd": "FDF05",
+        "dlrNm": "Kia Del Duero",
+        "dmsNm": "Intelisis",
+        "grpNm": "Fame",
+        "crmNm": "-",
+        "postCd": "59600",
+        "adrStateNm": "Michoacan",
+        "adrCityNm": "Zamora",
+        "rfc": "SWM090107L70",
+        "telephone": "3515123500",
+        "address": "Av. Francisco I. Madero Sur 579 Col Centro"
+    },
+    {
         "dlrCd": "ADF03",
         "dlrNm": "Kia Del Valle",
         "dmsNm": "SMARTIT",
@@ -1212,19 +1225,7 @@ const dealersData : InfoDealer [] =
         "telephone": "01 646 900 9500",
         "address": "Lázaro Cárdenas 1509, Bahia Ensenada"
     },
-    {
-        "dlrCd": "FDF05",
-        "dlrNm": "Kia del Duero",
-        "dmsNm": "Intelisis",
-        "grpNm": "Fame",
-        "crmNm": "-",
-        "postCd": "59600",
-        "adrStateNm": "Michoacan",
-        "adrCityNm": "Zamora",
-        "rfc": "SWM090107L70",
-        "telephone": "3515123500",
-        "address": "Av. Francisco I. Madero Sur 579 Col Centro"
-    }
+    
 ]
 
 export default dealersData;

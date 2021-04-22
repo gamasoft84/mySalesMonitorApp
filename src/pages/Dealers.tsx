@@ -24,29 +24,41 @@ const DealersPage: React.FC = () => {
   const [data, setData] = useState<InfoDealer[]>([]);
   const [dataSearch, setDataSearch] = useState<InfoDealer[]>([]);
   const [totalDealers, setTotalDealers] = useState(0);
+  const [searchText, setSearchText] = useState('');
 
   const [showLoading, setShowLoading] = useState(true);
 
   useIonViewWillEnter(() => {
     //var dealersDataSort = dealersData.sort((a,b) => a.dlrNm.localeCompare(b.dlrNm) )
     setData(dealersData);       
-    setDataSearch(dealersData);
-    setTotalDealers(dealersData.length);       
-    setShowLoading(false);
+    if(searchText){      
+      let dataFilter = addFilter(searchText);
+      setDataSearch(dataFilter);
+      setTotalDealers(dataFilter.length);
+    }else{
+      setDataSearch(dealersData);
+      setTotalDealers(dealersData.length);       
+    }
+    setShowLoading(false); 
   });
 
   const onChangeSearch = (value: string) =>{
     if(data.length > 0){
-      let dataFilter = data.filter( d => 
-        d.dlrNm.toLowerCase().includes(value.toLowerCase())  ||  
-        d.adrStateNm.toLowerCase().includes(value.toLowerCase()) ||
-        d.grpNm.toLowerCase().includes(value.toLowerCase()) ||
-        d.dmsNm.toLowerCase().includes(value.toLowerCase()) ||
-        d.crmNm?.toLowerCase().includes(value.toLowerCase())
-        )
+      let dataFilter = addFilter(value);
       setTotalDealers(dataFilter.length);
       setDataSearch(dataFilter);
+      setSearchText(value);
     }
+  }
+
+  const addFilter = (value: string) =>{
+    return  data.filter( d => 
+      d.dlrNm.toLowerCase().includes(value.toLowerCase())  ||  
+      d.adrStateNm.toLowerCase().includes(value.toLowerCase()) ||
+      d.grpNm.toLowerCase().includes(value.toLowerCase()) ||
+      d.dmsNm.toLowerCase().includes(value.toLowerCase()) ||
+      d.crmNm?.toLowerCase().includes(value.toLowerCase())
+      )
   }
 
   return (
@@ -56,12 +68,12 @@ const DealersPage: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Dealers ({totalDealers})</IonTitle>
+          <IonTitle>Dealers ({totalDealers})   {searchText}</IonTitle>
         </IonToolbar>
       </IonHeader>
       
       <IonToolbar>
-      <IonSearchbar  inputmode="text" placeholder="Search ..." animated onIonChange={(e) => onChangeSearch(e.detail.value || '')}></IonSearchbar>
+      <IonSearchbar  value={searchText} placeholder="Search ..." animated onIonChange={(e) => onChangeSearch(e.detail.value || '')}></IonSearchbar>
     </IonToolbar>
 
       <IonContent fullscreen>
