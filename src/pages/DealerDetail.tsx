@@ -75,18 +75,6 @@ const DealerDetail: React.FC = () => {
                   <IonCol>B20VA<IonText color="success">{dealer?.dlrCd}</IonText></IonCol>
                 </IonRow>
                 <IonRow>
-                  <IonCol><IonText color="primary">GROUP</IonText></IonCol>
-                  <IonCol>{dealer?.grpNm}</IonCol>
-                </IonRow>
-                <IonRow>
-                  <IonCol><IonText color="primary">DMS</IonText></IonCol>
-                  <IonCol>{dealer?.dmsNm}</IonCol>
-                </IonRow>
-                <IonRow>
-                  <IonCol><IonText color="primary">CRM</IonText></IonCol>
-                  <IonCol>{dealer?.crmNm}</IonCol>
-                </IonRow>
-                <IonRow>
                   <IonCol><IonText color="primary">ADDRESS</IonText></IonCol>
                   <IonCol>{dealer?.address}, {dealer?.adrCityNm},{" "}{dealer?.postCd} {dealer?.adrStateNm}.</IonCol>
                 </IonRow>
@@ -97,6 +85,18 @@ const DealerDetail: React.FC = () => {
                 <IonRow>
                   <IonCol><IonText color="primary">RFC</IonText></IonCol>
                   <IonCol>{dealer?.rfc}</IonCol>
+                </IonRow>
+                <IonRow>
+                  <IonCol><IonText color="primary">GROUP</IonText></IonCol>
+                  <IonCol>{dealer?.grpNm}</IonCol>
+                </IonRow>
+                <IonRow>
+                  <IonCol><IonText color="primary">DMS</IonText></IonCol>
+                  <IonCol>{dealer?.dmsNm}</IonCol>
+                </IonRow>
+                <IonRow>
+                  <IonCol><IonText color="primary">CRM</IonText></IonCol>
+                  <IonCol>{dealer?.crmNm}</IonCol>
                 </IonRow>
               </IonGrid>
             </IonCardSubtitle>
