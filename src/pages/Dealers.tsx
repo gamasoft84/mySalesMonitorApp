@@ -71,11 +71,11 @@ const DealersPage: React.FC = () => {
           </IonHeader>
     
           <IonItem>
-            <IonLabel className="ion-text-wrap" color="secondary">DEALER</IonLabel>  
-            <IonLabel className="ion-text-wrap" color="secondary">STATE</IonLabel>
-            <IonLabel className="ion-text-wrap ion-hide-xs-down" color="secondary">GROUP</IonLabel> 
-            <IonLabel className="ion-text-wrap ion-hide-sm-down" color="secondary">DMS</IonLabel>            
-            <IonLabel className="ion-text-wrap ion-hide-sm-down" color="secondary">CRM</IonLabel>            
+            <IonLabel className="ion-text-wrap" color="primary">DEALER</IonLabel>  
+            <IonLabel className="ion-text-wrap" color="primary">STATE</IonLabel>
+            <IonLabel className="ion-text-wrap ion-hide-xs-down" color="primary">GROUP</IonLabel> 
+            <IonLabel className="ion-text-wrap ion-hide-sm-down" color="primary">DMS</IonLabel>            
+            <IonLabel className="ion-text-wrap ion-hide-sm-down" color="primary">CRM</IonLabel>            
           </IonItem>
         {dataSearch.map((d, index) => (
           <IonItem key={index} routerLink={`/page/dealer/${d.dlrCd}`}>

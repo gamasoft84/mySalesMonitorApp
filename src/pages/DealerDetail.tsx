@@ -22,6 +22,7 @@ import {
 } from "@ionic/react";
 import { InfoDealer } from "../data/IDealer";
 import { useParams } from "react-router";
+import Map from "../components/Map";
 
 interface Params {
   id: string;
@@ -70,32 +71,51 @@ const DealerDetail: React.FC = () => {
           <IonCardHeader>
             <IonCardSubtitle>
               <IonGrid>
-              <IonRow>
-                  <IonCol><IonText color="primary">DEALER CODE</IonText></IonCol>
-                  <IonCol>B20VA<IonText color="success">{dealer?.dlrCd}</IonText></IonCol>
+                <IonRow>
+                  <IonCol>
+                    <IonText color="primary">DEALER CODE</IonText>
+                  </IonCol>
+                  <IonCol>
+                    B20VA<IonText color="success">{dealer?.dlrCd}</IonText>
+                  </IonCol>
                 </IonRow>
                 <IonRow>
-                  <IonCol><IonText color="primary">ADDRESS</IonText></IonCol>
-                  <IonCol>{dealer?.address}, {dealer?.adrCityNm},{" "}{dealer?.postCd} {dealer?.adrStateNm}.</IonCol>
+                  <IonCol>
+                    <IonText color="primary">ADDRESS</IonText>
+                  </IonCol>
+                  <IonCol>
+                    {dealer?.address}, {dealer?.adrCityNm}, {dealer?.postCd}{" "}
+                    {dealer?.adrStateNm}.
+                  </IonCol>
                 </IonRow>
                 <IonRow>
-                  <IonCol><IonText color="primary">TELEPHONE</IonText></IonCol>
+                  <IonCol>
+                    <IonText color="primary">TELEPHONE</IonText>
+                  </IonCol>
                   <IonCol>{dealer?.telephone}</IonCol>
                 </IonRow>
                 <IonRow>
-                  <IonCol><IonText color="primary">RFC</IonText></IonCol>
+                  <IonCol>
+                    <IonText color="primary">RFC</IonText>
+                  </IonCol>
                   <IonCol>{dealer?.rfc}</IonCol>
                 </IonRow>
                 <IonRow>
-                  <IonCol><IonText color="primary">GROUP</IonText></IonCol>
+                  <IonCol>
+                    <IonText color="primary">GROUP</IonText>
+                  </IonCol>
                   <IonCol>{dealer?.grpNm}</IonCol>
                 </IonRow>
                 <IonRow>
-                  <IonCol><IonText color="primary">DMS</IonText></IonCol>
+                  <IonCol>
+                    <IonText color="primary">DMS</IonText>
+                  </IonCol>
                   <IonCol>{dealer?.dmsNm}</IonCol>
                 </IonRow>
                 <IonRow>
-                  <IonCol><IonText color="primary">CRM</IonText></IonCol>
+                  <IonCol>
+                    <IonText color="primary">CRM</IonText>
+                  </IonCol>
                   <IonCol>{dealer?.crmNm}</IonCol>
                 </IonRow>
               </IonGrid>
@@ -103,7 +123,20 @@ const DealerDetail: React.FC = () => {
             <IonCardTitle></IonCardTitle>
           </IonCardHeader>
 
-          <IonCardContent></IonCardContent>
+          <IonCardContent>
+            {dealer?.dlrCd && dealer?.dlrCd == "DCL01" ? (
+              <Map
+                googleMapURL={
+                  "https://maps.googleapis.com/maps/api/js?v=e.exp&key=AIzaSyCT9ElJnsAcgUwqc2AbKTwpv53DSZO6ckM"
+                }
+                containerElement={<div style={{ height: "400px" }} />}
+                mapElement={<div style={{ height: "100%" }} />}
+                loadingElement={<p>Cargando</p>}
+              />
+            ) : (
+              ""
+            )}
+          </IonCardContent>
         </IonCard>
       </IonContent>
 

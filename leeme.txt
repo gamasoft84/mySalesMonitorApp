@@ -21,3 +21,8 @@ ionic cap run ios -l --external
 ionic build 
 npx cap sync
 
+
+npm install --save @types/google-map-react
+
+
+
