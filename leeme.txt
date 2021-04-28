@@ -24,5 +24,13 @@ npx cap sync
 
 npm install --save @types/google-map-react
 
+Call
+----
+npm install call-number
+npm install @ionic-native/core
+npm install @ionic-native/call-number
+
+
+
 
 

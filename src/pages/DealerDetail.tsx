@@ -19,10 +19,19 @@ import {
   IonGrid,
   IonRow,
   IonCol,
+  IonFabButton,
+  IonIcon,
+  IonFab,
 } from "@ionic/react";
+
+import { CallNumber } from "@ionic-native/call-number";
 import { InfoDealer } from "../data/IDealer";
 import { useParams } from "react-router";
 import Map from "../components/Map";
+
+import {
+  phonePortraitSharp
+} from "ionicons/icons";
 
 interface Params {
   id: string;
@@ -42,6 +51,10 @@ const DealerDetail: React.FC = () => {
     setDealer(dealer);
     setShowLoading(false);
   }, [params.id]);
+
+  const call = ()=>{
+    CallNumber.callNumber(dealer?.telephone || "", true);
+  }
 
   return (
     <IonPage>
@@ -120,7 +133,9 @@ const DealerDetail: React.FC = () => {
                 </IonRow>
               </IonGrid>
             </IonCardSubtitle>
-            <IonCardTitle></IonCardTitle>
+            <IonCardTitle className="ion-ion-text-center">
+          
+            </IonCardTitle>
           </IonCardHeader>
 
           <IonCardContent>
@@ -136,10 +151,20 @@ const DealerDetail: React.FC = () => {
             ) : (
               ""
             )}
+ 
           </IonCardContent>
         </IonCard>
       </IonContent>
 
+      {dealer?.telephone ?
+      <IonFab vertical="bottom" horizontal="end" slot="fixed">
+        <IonFabButton>
+          <IonIcon icon={phonePortraitSharp} onClick={() => call()} />
+        </IonFabButton>
+      </IonFab>
+      : ""}
+
+      
       <IonLoading
         isOpen={showLoading}
         onDidDismiss={() => setShowLoading(false)}
