@@ -6,13 +6,14 @@ interface Props{
     containerElement: any,
     mapElement: any,
     loadingElement: any
-
+    latitude: number
+    longitude: number
 }
 
 const Map = (props: Props) => {
     return (
-        <GoogleMap defaultZoom={15}
-        defaultCenter={{lat:26.927622632445964, lng:-101.41830412689119}}
+        <GoogleMap defaultZoom={16}
+        defaultCenter={{lat: props.latitude, lng: props.longitude}}
         />
     )
 }

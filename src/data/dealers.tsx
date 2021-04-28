@@ -14,7 +14,9 @@ const dealersData : InfoDealer [] =
         "adrCityNm": "Venustiano Carranza",
         "rfc": "KMO141215B19",
         "telephone": "50255000",
-        "address": "Fuerza Aérea Mexicana # 310"
+        "address": "Fuerza Aérea Mexicana # 310",
+        "latitude": 19.420844849336607,
+        "longitude": -99.08217528268341
     },
     {
         "dlrCd": "DSR01",
@@ -27,7 +29,9 @@ const dealersData : InfoDealer [] =
         "adrCityNm": "Ahome",
         "rfc": "APA150602688",
         "telephone": "6688164200",
-        "address": "Blvd. Antonio Rosales 955 Sur Colonia Centro"
+        "address": "Blvd. Antonio Rosales 955 Sur Colonia Centro",
+        "latitude": 25.786858618090207,
+        "longitude": -109.00221840932282
     },
     {
         "dlrCd": "AAS01",
@@ -40,7 +44,9 @@ const dealersData : InfoDealer [] =
         "adrCityNm": "Aguascalientes",
         "rfc": "VKX1507204SA",
         "telephone": "4493003542",
-        "address": "Blvd. Luis Donaldo Colosio Murrieta 606"
+        "address": "Blvd. Luis Donaldo Colosio Murrieta 606",
+        "latitude": 21.925651939166844,
+        "longitude": -102.29960712522715
     },
     {
         "dlrCd": "CVZ01",
@@ -53,7 +59,9 @@ const dealersData : InfoDealer [] =
         "adrCityNm": "Córdoba",
         "rfc": "VKX1507167L9",
         "telephone": "2717321360",
-        "address": "prolongacion calle 10"
+        "address": "prolongacion calle 10",
+        "latitude": 18.882702052051734, 
+        "longitude": -96.95819536864578
     },
     {
         "dlrCd": "APL01",
@@ -66,7 +74,9 @@ const dealersData : InfoDealer [] =
         "adrCityNm": "Puebla",
         "rfc": "CCO150129ME8",
         "telephone": "52 2223035000",
-        "address": "VIA ATLIXCAYOTL 5520 A RESERVA TERRITORIAL ATLIXCAYOTL"
+        "address": "VIA ATLIXCAYOTL 5520 A RESERVA TERRITORIAL ATLIXCAYOTL",
+        "latitude": 19.023377307699487, 
+        "longitude": -98.24118433027539
     },
     {
         "dlrCd": "AVZ01",

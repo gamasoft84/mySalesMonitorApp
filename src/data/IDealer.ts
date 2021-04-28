@@ -11,4 +11,6 @@ export interface InfoDealer {
     rfc : string;
     telephone : string;
     address : string;
+    latitude? : number,
+    longitude? : number
   }

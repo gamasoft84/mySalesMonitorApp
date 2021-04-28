@@ -139,7 +139,7 @@ const DealerDetail: React.FC = () => {
           </IonCardHeader>
 
           <IonCardContent>
-            {dealer?.dlrCd && dealer?.dlrCd == "DCL01" ? (
+            {dealer?.latitude && dealer?.longitude ? (
               <Map
                 googleMapURL={
                   "https://maps.googleapis.com/maps/api/js?v=e.exp&key=AIzaSyCT9ElJnsAcgUwqc2AbKTwpv53DSZO6ckM"
@@ -147,6 +147,8 @@ const DealerDetail: React.FC = () => {
                 containerElement={<div style={{ height: "400px" }} />}
                 mapElement={<div style={{ height: "100%" }} />}
                 loadingElement={<p>Cargando</p>}
+                latitude = {dealer?.latitude}
+                longitude = {dealer?.longitude}
               />
             ) : (
               ""
