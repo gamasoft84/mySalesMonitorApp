@@ -32,6 +32,8 @@ import Map from "../components/Map";
 import {
   phonePortraitSharp
 } from "ionicons/icons";
+import { Browser, Geolocation } from "@capacitor/core";
+
 
 interface Params {
   id: string;
@@ -40,8 +42,16 @@ interface Params {
 const DealerDetail: React.FC = () => {
   const [showLoading, setShowLoading] = useState(true);
   const [dealer, setDealer] = useState<InfoDealer>();
-
+  const [latitude, setLatitude] = useState<number>(19.428367952216863);
+  const [longitude, setLongitude] = useState<number>(-99.16313675985361);
   const params = useParams<Params>();
+  
+  const getCurrentPosition = async() => {
+    let coordinates = await Geolocation.getCurrentPosition();
+    setLatitude(coordinates.coords.latitude);
+    setLongitude(coordinates.coords.longitude);
+  }
+
 
   useEffect(() => {
     console.log(params);
@@ -50,6 +60,7 @@ const DealerDetail: React.FC = () => {
     var dealer = dealersData.filter((d) => d.dlrCd === params.id).pop();
     setDealer(dealer);
     setShowLoading(false);
+    getCurrentPosition();
   }, [params.id]);
 
   const call = ()=>{
@@ -94,7 +105,7 @@ const DealerDetail: React.FC = () => {
                 </IonRow>
                 <IonRow>
                   <IonCol>
-                    <IonText color="primary">ADDRESS</IonText>
+                  <IonText color="primary">ADDRESS</IonText>
                   </IonCol>
                   <IonCol>
                     {dealer?.address}, {dealer?.adrCityNm}, {dealer?.postCd}{" "}
@@ -151,7 +162,16 @@ const DealerDetail: React.FC = () => {
                 longitude = {dealer?.longitude}
               />
             ) : (
-              ""
+              <Map
+                googleMapURL={
+                  "https://maps.googleapis.com/maps/api/js?v=e.exp&key=AIzaSyCT9ElJnsAcgUwqc2AbKTwpv53DSZO6ckM"
+                }
+                containerElement={<div style={{ height: "400px" }} />}
+                mapElement={<div style={{ height: "100%" }} />}
+                loadingElement={<p>Cargando</p>}
+                latitude = {latitude}
+                longitude = {longitude}
+                />
             )}
  
           </IonCardContent>
