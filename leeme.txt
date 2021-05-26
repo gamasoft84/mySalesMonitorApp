@@ -8,6 +8,7 @@ ionic serve          (mostar en web puerto 8001)
 1 ionic build          (genera www)
 npx cap add android  (genera proy android)
 npx cap open android (Abre Android Studio para genera el apk (Build Blondies APK))
+npx cap open ios
 npx cap sync
 
 

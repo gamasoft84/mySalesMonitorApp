@@ -24,8 +24,8 @@ import {
   analyticsSharp,
   cashOutline,
   cashSharp,
-  cameraOutline,
-  cameraSharp,
+  imagesOutline,
+  imagesSharp,
   moonOutline,
   moonSharp,
   businessOutline,
@@ -86,6 +86,12 @@ const appPages: AppPage[] = [
     url: "/page/Prices",
     iosIcon: cashOutline,
     mdIcon: cashSharp,
+  },
+  {
+    title: "Gallery",
+    url: "/page/Gallery",
+    iosIcon: imagesOutline,
+    mdIcon: imagesSharp,
   },
   {
     title: "Info Dealers",

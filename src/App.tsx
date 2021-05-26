@@ -32,6 +32,8 @@ import LoiginByDevice from './pages/LoiginByDevice';
 import ErrorsByTypePage from './pages/ErrorsByTypePage';
 import DealersPage from './pages/Dealers';
 import DealerDetail from './pages/DealerDetail';
+import GalleryPage from './pages/GalleryPage';
+import CoverDetail from './pages/cover/CoverDetail';
 
 const App: React.FC = () => {
   return (
@@ -72,6 +74,12 @@ const App: React.FC = () => {
             </Route>
             <Route path="/page/dealer/:id" exact={true}>
               <DealerDetail/>
+            </Route>
+            <Route path="/page/Gallery" exact={true}>
+              <GalleryPage/>
+            </Route>
+            <Route path="/page/gallery/:model/:year" exact={true}>
+              <CoverDetail/>
             </Route> 
             <Route path="/tabs" render={() => <MainTabs />} />
           </IonRouterOutlet>
