@@ -1,7 +1,7 @@
-import { getCovers } from "../helpers/getDataCMS";
+import { getCovers } from "../../helpers/getDataCMS";
 import { IonLoading, useIonViewWillEnter } from "@ionic/react";
 import { useState } from "react";
-import CoverList from "./cover/CoverList";
+import CoverList from "./CoverList";
 
 interface InfoCovers {
   id: string;
@@ -19,9 +19,7 @@ const GalleryPage: React.FC = () => {
 
   useIonViewWillEnter(() => {
     getCovers().then((data) => {
-      console.log(data);
       setCovers(data);
-      console.log(covers);
       setShowLoading(false);
     });
   });

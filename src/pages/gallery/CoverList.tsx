@@ -33,7 +33,7 @@ const CoverList: React.FC<StateProps> = ({ covers }) => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Models</IonTitle>
+            <IonTitle size="large">{covers.length} Models</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonGrid fixed>

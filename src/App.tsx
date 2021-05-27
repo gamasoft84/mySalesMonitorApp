@@ -32,8 +32,8 @@ import LoiginByDevice from './pages/LoiginByDevice';
 import ErrorsByTypePage from './pages/ErrorsByTypePage';
 import DealersPage from './pages/Dealers';
 import DealerDetail from './pages/DealerDetail';
-import GalleryPage from './pages/GalleryPage';
-import CoverDetail from './pages/cover/CoverDetail';
+import GalleryPage from './pages/gallery/GalleryPage';
+import CoverDetail from './pages/gallery/CoverDetail';
 
 const App: React.FC = () => {
   return (
