@@ -11,7 +11,7 @@ import {
   IonSlides,
   useIonViewWillEnter,
 } from "@ionic/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router";
 import { getImagesByModelByYear } from "../../helpers/getDataCMS";
 
@@ -33,16 +33,12 @@ const CoverDetail: React.FC = () => {
 
   useIonViewWillEnter(() => {
     getImagesByModelByYear(params.model, params.year).then((data) => {
-      console.log(data);
       setImages(data);
       setShowLoading(false);
     });
   });
 
-  const [id, setId] = useState();
-
   const params = useParams<Params>();
-
   const [singleSwiper, setSingleSwiper] = useState<any>({});
   const [thumbsSwiper, setThumbsSwiper] = useState<any>({});
 
@@ -63,7 +59,7 @@ const CoverDetail: React.FC = () => {
     freeMode: true,
     watchSlidesVisibility: true,
     watchSlidesProgress: true,
-    autoplay:true,
+    //autoplay:true,
     speed: 25000,
   };
 
@@ -82,10 +78,6 @@ const CoverDetail: React.FC = () => {
   const tap = function (index: number) {
     singleSwiper.slideTo(index);
   };
-
-  useEffect(() => {
-    setShowLoading(false);
-  }, [params]);
 
   return (
     <IonPage>
@@ -106,6 +98,23 @@ const CoverDetail: React.FC = () => {
             <IonTitle size="large">{params.year}</IonTitle>
           </IonToolbar>
         </IonHeader>
+
+        <IonSlides
+          onIonSlidesDidLoad={initSingle}
+          scrollbar={true}
+          options={singleSlider}
+          mode="ios"
+          className="single-slider"
+          onIonSlideDidChange={swipe}
+        >
+          {images.map((image: InfoImages, index: number) => {
+            return (
+              <IonSlide key={index} onClick={() => tap(index)}>
+                <img src={image.url}></img>
+              </IonSlide>
+            );
+          })}
+        </IonSlides>
 
         <IonSlides
           options={thumbSlider}
