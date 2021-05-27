@@ -46,7 +46,7 @@ const CoverDetail: React.FC = () => {
 
   const params = useParams<Params>();
   const [singleSwiper, setSingleSwiper] = useState<any>({});
-  const [thumbsSwiper, setThumbsSwiper] = useState<any>({});
+  const [gallerySwiper, setGallerySwiper] = useState<any>({});
 
   const singleSlider = {
     spaceBetween: 5,
@@ -59,29 +59,30 @@ const CoverDetail: React.FC = () => {
     },
   };
 
-  const thumbSlider = {
+  const gallerySlider = {
     spaceBetween: 2,
     slidesPerView: 4,
     freeMode: true,
     watchSlidesVisibility: true,
     watchSlidesProgress: true,
-    //autoplay:true,
-    speed: 25000,
+    speed: 10000,
   };
 
   const initSingle = async function (this: any) {
     setSingleSwiper(await this.getSwiper());
   };
 
-  const initThumbs = async function (this: any) {
-    setThumbsSwiper(await this.getSwiper());
+  const initGallery = async function (this: any) {
+    console.log('initGallery');
+    setGallerySwiper(await this.getSwiper());
   };
 
-  const swipe = async function (this: any) {
-    thumbsSwiper.slideTo(await this.getActiveIndex());
+  const swipe = async function (this: any) {    
+    gallerySwiper.slideTo(await this.getActiveIndex());
   };
 
   const tap = function (index: number) {
+    console.log('tap', index);
     singleSwiper.slideTo(index);
   };
 
@@ -101,7 +102,7 @@ const CoverDetail: React.FC = () => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">{params.year}</IonTitle>
+            <IonTitle size="large">{title} {params.year}</IonTitle>
           </IonToolbar>
         </IonHeader>
 
@@ -123,10 +124,11 @@ const CoverDetail: React.FC = () => {
         </IonSlides>
 
         <IonSlides
-          options={thumbSlider}
+          onIonSlidesDidLoad={initGallery}
+          scrollbar={false}
+          options={gallerySlider}
           mode="ios"
-          className="thumbs-slider"
-          onIonSlidesDidLoad={initThumbs}
+          className="gallery-slider"
         >
           {images.map((image: InfoImages, index: number) => {
             return (
