@@ -1,4 +1,4 @@
-import { InfoDealer } from "./IDealer";
+import { InfoDealer } from "../models/IDealer";
 
 
 const dealersData : InfoDealer [] =

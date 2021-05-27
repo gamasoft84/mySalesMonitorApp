@@ -14,6 +14,8 @@ import {
 import React, { useState } from "react";
 import { useParams } from "react-router";
 import { getImagesByModelByYear } from "../../helpers/getDataCMS";
+import modelsData from "../../data/modelsData";
+
 
 interface Params {
   model: string;
@@ -30,10 +32,14 @@ interface InfoImages {
 const CoverDetail: React.FC = () => {
   const [showLoading, setShowLoading] = useState(true);
   const [images, setImages] = useState<InfoImages[]>([]);
+  const [title, setTitle] = useState('');
 
   useIonViewWillEnter(() => {
     getImagesByModelByYear(params.model, params.year).then((data) => {
       setImages(data);
+      let model = modelsData.filter(m => m.code === params.model)[0];
+      let title = model ? model.name : 'DESCONOCIDO';
+      setTitle(title);
       setShowLoading(false);
     });
   });
@@ -87,7 +93,7 @@ const CoverDetail: React.FC = () => {
             <IonMenuButton />
           </IonButtons>
           <IonTitle>
-            {params.model} {params.year}
+            {title} {params.year}
           </IonTitle>
         </IonToolbar>
       </IonHeader>

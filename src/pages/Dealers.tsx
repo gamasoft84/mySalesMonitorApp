@@ -15,7 +15,7 @@ import {
 } from "@ionic/react";
 
 import { IonItem, IonLabel } from "@ionic/react";
-import { InfoDealer } from "../data/IDealer";
+import { InfoDealer } from "../models/IDealer";
 
 const DealersPage: React.FC = () => {
   const [dataSearch, setDataSearch] = useState<InfoDealer[]>([]);

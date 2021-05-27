@@ -11,6 +11,7 @@ interface InfoCovers {
   year: string;
   model: string;
   modelCd: string;
+  title: string;
 }
 
 const GalleryPage: React.FC = () => {

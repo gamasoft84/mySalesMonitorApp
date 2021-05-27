@@ -6,4 +6,5 @@ export interface Cover {
   year: string;
   model: string;
   modelCd: string;
+  title: string;
 }

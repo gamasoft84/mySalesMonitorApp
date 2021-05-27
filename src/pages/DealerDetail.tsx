@@ -25,7 +25,7 @@ import {
 } from "@ionic/react";
 
 import { CallNumber } from "@ionic-native/call-number";
-import { InfoDealer } from "../data/IDealer";
+import { InfoDealer } from "../models/IDealer";
 import { useParams } from "react-router";
 import Map from "../components/Map";
 
@@ -54,9 +54,6 @@ const DealerDetail: React.FC = () => {
 
 
   useEffect(() => {
-    console.log(params);
-
-    console.log(params.id);
     var dealer = dealersData.filter((d) => d.dlrCd === params.id).pop();
     setDealer(dealer);
     setShowLoading(false);

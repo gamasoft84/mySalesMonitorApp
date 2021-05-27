@@ -31,7 +31,7 @@ const CoverItem: React.FC<ItemProps> = ({ cover }) => {
             </IonAvatar>
             <IonLabel>
               <h2>
-                {cover.model} {cover.year}
+                {cover.title} {cover.year}
               </h2>
             </IonLabel>
           </IonItem>
