@@ -66,6 +66,8 @@ const CoverDetail: React.FC = () => {
     watchSlidesVisibility: true,
     watchSlidesProgress: true,
     speed: 10000,
+    //direction: 'vertical',
+    grabCursor: true,
   };
 
   const initSingle = async function (this: any) {
@@ -73,8 +75,8 @@ const CoverDetail: React.FC = () => {
   };
 
   const initGallery = async function (this: any) {
-    console.log('initGallery');
     setGallerySwiper(await this.getSwiper());
+    await this.startAutoplay();
   };
 
   const swipe = async function (this: any) {    
@@ -82,7 +84,6 @@ const CoverDetail: React.FC = () => {
   };
 
   const tap = function (index: number) {
-    console.log('tap', index);
     singleSwiper.slideTo(index);
   };
 
