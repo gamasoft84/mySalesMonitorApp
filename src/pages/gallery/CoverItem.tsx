@@ -1,45 +1,23 @@
 import React from "react";
 import { Cover } from "../../models/Cover";
-import {
-  IonCard,
-  IonCardHeader,
-  IonItem,
-  IonLabel,
-  IonAvatar,
-} from "@ionic/react";
+import { IonCard, IonContent } from "@ionic/react";
+import "./CoverItem.scss";
+
 interface ItemProps {
   cover: Cover;
 }
 
 const CoverItem: React.FC<ItemProps> = ({ cover }) => {
   return (
-    <>
-      <IonCard className="speaker-card">
-        <IonCardHeader>
-          <IonItem
-            button
-            detail={false}
-            lines="none"
-            className="speaker-item"
-            routerLink={`/page/gallery/${cover.model}/${cover.year}`}
-          >
-            <IonAvatar slot="start">
-              <img
-                src={cover.url}
-                alt={cover.model}
-              />
-            </IonAvatar>
-            <IonLabel>
-              <h2>
-                {cover.title} {cover.year}
-              </h2>
-            </IonLabel>
-          </IonItem>
-        </IonCardHeader>
-
-      
+    <div className="card-background-page">
+      <IonCard
+        routerLink={`/page/gallery/${cover.model}/${cover.year}`}
+      >
+        <img src={cover.url} />
+        <div className="card-title">{cover.title}</div>
+        <div className="card-subtitle">{cover.year}</div>
       </IonCard>
-    </>
+    </div>
   );
 };
 

@@ -39,7 +39,7 @@ const CoverList: React.FC<StateProps> = ({ covers }) => {
         <IonGrid fixed>
           <IonRow>
             {covers.map((cover) => (
-              <IonCol size="12" size-sm="6" size-xl="4" key={cover.id}>
+              <IonCol size-xs="12" size-sm="12" size-md="12" size-xl="12" key={cover.id}>
                 <CoverItem key={cover.id} cover={cover} />
               </IonCol>
             ))}

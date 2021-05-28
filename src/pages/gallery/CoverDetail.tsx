@@ -35,11 +35,11 @@ const CoverDetail: React.FC = () => {
   const [title, setTitle] = useState('');
 
   useIonViewWillEnter(() => {
+    let model = modelsData.filter(m => m.code === params.model)[0];
+    let title = model ? model.name : 'DESCONOCIDO';
+    setTitle(title);
     getImagesByModelByYear(params.model, params.year).then((data) => {
       setImages(data);
-      let model = modelsData.filter(m => m.code === params.model)[0];
-      let title = model ? model.name : 'DESCONOCIDO';
-      setTitle(title);
       setShowLoading(false);
     });
   });
