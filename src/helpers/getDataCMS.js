@@ -4,9 +4,19 @@ import { fetchConToken } from "./fetchCMS";
 export const getCovers = async() => {
     const resp = await fetchConToken('data/images/covers');
     let data = await resp.json();
+
     if(data && data.length > 1){
         data.sort((a, b) => b.year - a.year);
     }
+
+    data = data.filter(c =>  
+        !(c.year === '2020' && 
+        (c.model === 'sorento' || c.model === 'seltos' || c.model === 'niro' || c.model === 'Stinger') )
+    );
+
+    data = data.filter(c =>  
+        !(c.year === '2021' && c.model === 'Stinger')
+    );
 
     data = data.map(function(c){
         let model = modelsData.filter(m => m.code === c.model)[0];
