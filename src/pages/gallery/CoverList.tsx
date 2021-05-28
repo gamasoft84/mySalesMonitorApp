@@ -10,15 +10,25 @@ import {
   IonGrid,
   IonRow,
   IonCol,
+  IonFab,
+  IonFabButton,
+  IonIcon,
 } from "@ionic/react";
 import { Cover } from "../../models/Cover";
 import CoverItem from "./CoverItem";
+import { phonePortraitSharp } from "ionicons/icons";
 
 interface StateProps {
   covers: Cover[];
 }
 
 const CoverList: React.FC<StateProps> = ({ covers }) => {
+
+
+  const call = ()=>{
+    console.log('press button ...');
+  }
+
   return (
     <IonPage id="speaker-list">
       <IonHeader translucent={true}>
@@ -45,6 +55,15 @@ const CoverList: React.FC<StateProps> = ({ covers }) => {
             ))}
           </IonRow>
         </IonGrid>
+        
+
+
+      <IonFab vertical="bottom" horizontal="end" slot="fixed">
+        <IonFabButton>
+          <IonIcon icon={phonePortraitSharp} onClick={() => call()} />
+        </IonFabButton>
+      </IonFab>
+
       </IonContent>
     </IonPage>
   );
