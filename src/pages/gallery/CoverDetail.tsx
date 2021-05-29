@@ -10,12 +10,16 @@ import {
   IonSlide,
   IonSlides,
   useIonViewWillEnter,
+  IonButton,
+  IonActionSheet,
+  IonModal,
 } from "@ionic/react";
 import React, { useState } from "react";
 import { useParams } from "react-router";
 import { getImagesByModelByYear } from "../../helpers/getDataCMS";
 import modelsData from "../../data/modelsData";
-
+import "./CoverDetail.scss";
+import { download, close, share, heart } from "ionicons/icons";
 
 interface Params {
   model: string;
@@ -32,11 +36,13 @@ interface InfoImages {
 const CoverDetail: React.FC = () => {
   const [showLoading, setShowLoading] = useState(true);
   const [images, setImages] = useState<InfoImages[]>([]);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
+  const [showActionSheet, setShowActionSheet] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useIonViewWillEnter(() => {
-    let model = modelsData.filter(m => m.code === params.model)[0];
-    let title = model ? model.name : 'DESCONOCIDO';
+    let model = modelsData.filter((m) => m.code === params.model)[0];
+    let title = model ? model.name : "DESCONOCIDO";
     setTitle(title);
     getImagesByModelByYear(params.model, params.year).then((data) => {
       setImages(data);
@@ -79,7 +85,7 @@ const CoverDetail: React.FC = () => {
     await this.startAutoplay();
   };
 
-  const swipe = async function (this: any) {    
+  const swipe = async function (this: any) {
     gallerySwiper.slideTo(await this.getActiveIndex());
   };
 
@@ -103,7 +109,9 @@ const CoverDetail: React.FC = () => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">{title} {params.year}</IonTitle>
+            <IonTitle size="large">
+              {title} {params.year}
+            </IonTitle>
           </IonToolbar>
         </IonHeader>
 
@@ -118,7 +126,10 @@ const CoverDetail: React.FC = () => {
           {images.map((image: InfoImages, index: number) => {
             return (
               <IonSlide key={index} onClick={() => tap(index)}>
-                <img src={image.url}></img>
+                <img
+                  src={image.url}
+                  onClick={() => setShowActionSheet(true)}
+                ></img>
               </IonSlide>
             );
           })}
@@ -139,6 +150,51 @@ const CoverDetail: React.FC = () => {
             );
           })}
         </IonSlides>
+
+        <IonActionSheet
+          isOpen={showActionSheet}
+          onDidDismiss={() => setShowActionSheet(false)}
+          cssClass="my-custom-class"
+          buttons={[
+            {
+              text: "Download",
+              role: "destructive",
+              icon: download,
+              handler: () => {
+                console.log("Download clicked");
+              },
+            },
+            {
+              text: "Share",
+              icon: share,
+              handler: () => {
+                console.log("Share clicked");
+              },
+            },
+            {
+              text: "Favorite",
+              icon: heart,
+              handler: () => {
+                console.log("Favorite clicked");
+              },
+            },
+            {
+              text: "Cancel",
+              icon: close,
+              role: "cancel",
+              handler: () => {
+                console.log("Cancel clicked");
+              },
+            },
+          ]}
+        ></IonActionSheet>
+
+        <IonModal isOpen={showModal} cssClass="my-custom-class">
+          <p>This is modal content</p>
+          <IonButton onClick={() => setShowModal(false)}>Close Modal</IonButton>
+        </IonModal>
+
+        <IonButton onClick={() => setShowModal(true)}>Show Modal</IonButton>
       </IonContent>
 
       <IonLoading
