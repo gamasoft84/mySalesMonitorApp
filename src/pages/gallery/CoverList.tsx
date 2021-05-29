@@ -14,14 +14,13 @@ import {
   IonFabButton,
   IonIcon,
   IonFabList,
+  IonSegment,
+  IonSegmentButton,
+  IonLabel,
 } from "@ionic/react";
 import { Cover } from "../../models/Cover";
 import CoverItem from "./CoverItem";
-import {
-  carSportOutline,
-  busOutline,
-  albumsOutline,
-} from "ionicons/icons";
+import { carSportOutline, busOutline, albumsOutline } from "ionicons/icons";
 
 interface StateProps {
   covers: Cover[];
@@ -34,10 +33,20 @@ const CoverList: React.FC<StateProps> = ({
   covers,
   filterBySuv,
   filterByCar,
-  withoutFilter
+  withoutFilter,
 }) => {
-  const call = () => {
-    console.log("press button ...");
+  const handleFilter = (typeFilter: any) => {
+    switch (typeFilter) {
+      case "car":
+        filterByCar();
+        break;
+      case "suv":
+        filterBySuv();
+        break;
+      default:
+        withoutFilter();
+        break;
+    }
   };
 
   return (
@@ -52,6 +61,24 @@ const CoverList: React.FC<StateProps> = ({
       </IonHeader>
 
       <IonContent fullscreen>
+        {/*-- Segment in a toolbar --*/}
+        <IonToolbar>
+          <IonSegment onIonChange={(e) => handleFilter(e.detail.value)}>
+            <IonSegmentButton value="all">
+              <IonIcon icon={albumsOutline} />
+              <IonLabel>ALL</IonLabel>
+            </IonSegmentButton>
+            <IonSegmentButton value="suv">
+              <IonIcon icon={busOutline} />
+              <IonLabel>SUV</IonLabel>
+            </IonSegmentButton>
+            <IonSegmentButton value="car">
+              <IonIcon icon={carSportOutline} />
+              <IonLabel>CAR</IonLabel>
+            </IonSegmentButton>
+          </IonSegment>
+        </IonToolbar>
+
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">{covers.length} Models</IonTitle>
@@ -73,21 +100,20 @@ const CoverList: React.FC<StateProps> = ({
           </IonRow>
         </IonGrid>
 
-          <IonFab vertical="bottom" horizontal="end" slot="fixed">
-            <IonFabButton>Filter</IonFabButton>
-            <IonFabList side="top">
-              <IonFabButton>
-                <IonIcon icon={albumsOutline} onClick={() => withoutFilter()} />
-              </IonFabButton>
-              <IonFabButton>
-                <IonIcon icon={busOutline} onClick={() => filterBySuv()} />
-              </IonFabButton>
-              <IonFabButton>
-                <IonIcon icon={carSportOutline} onClick={() => filterByCar()} />
-              </IonFabButton>
-            </IonFabList>
-
-          </IonFab>
+        <IonFab vertical="bottom" horizontal="end" slot="fixed">
+          <IonFabButton>Filter</IonFabButton>
+          <IonFabList side="top">
+            <IonFabButton>
+              <IonIcon icon={albumsOutline} onClick={() => withoutFilter()} />
+            </IonFabButton>
+            <IonFabButton>
+              <IonIcon icon={busOutline} onClick={() => filterBySuv()} />
+            </IonFabButton>
+            <IonFabButton>
+              <IonIcon icon={carSportOutline} onClick={() => filterByCar()} />
+            </IonFabButton>
+          </IonFabList>
+        </IonFab>
       </IonContent>
     </IonPage>
   );
