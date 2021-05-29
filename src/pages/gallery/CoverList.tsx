@@ -56,13 +56,6 @@ const CoverList: React.FC<StateProps> = ({
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>{covers.length} Models</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-
-      <IonContent fullscreen>
-        {/*-- Segment in a toolbar --*/}
-        <IonToolbar>
           <IonSegment onIonChange={(e) => handleFilter(e.detail.value)}>
             <IonSegmentButton value="all">
               <IonIcon icon={albumsOutline} />
@@ -78,12 +71,9 @@ const CoverList: React.FC<StateProps> = ({
             </IonSegmentButton>
           </IonSegment>
         </IonToolbar>
+      </IonHeader>
 
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">{covers.length} Models</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+      <IonContent fullscreen>
         <IonGrid fixed>
           <IonRow>
             {covers.map((cover) => (
