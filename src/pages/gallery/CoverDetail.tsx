@@ -38,7 +38,6 @@ const CoverDetail: React.FC = () => {
   const [images, setImages] = useState<InfoImages[]>([]);
   const [title, setTitle] = useState("");
   const [showActionSheet, setShowActionSheet] = useState(false);
-  const [showModal, setShowModal] = useState(false);
 
   useIonViewWillEnter(() => {
     let model = modelsData.filter((m) => m.code === params.model)[0];
@@ -125,10 +124,12 @@ const CoverDetail: React.FC = () => {
         >
           {images.map((image: InfoImages, index: number) => {
             return (
-              <IonSlide key={index} onClick={() => tap(index)}>
+              <IonSlide key={index} onClick={() => tap(index)} onSelect={()=>console.log('onSelect')}>
                 <img
                   src={image.url}
                   onClick={() => setShowActionSheet(true)}
+                  onKeyPressCapture={()=>console.log('onpress')}
+                  
                 ></img>
               </IonSlide>
             );
@@ -157,7 +158,7 @@ const CoverDetail: React.FC = () => {
           cssClass="my-custom-class"
           buttons={[
             {
-              text: "Download",
+              text: "Downloadd",
               role: "destructive",
               icon: download,
               handler: () => {
@@ -189,12 +190,6 @@ const CoverDetail: React.FC = () => {
           ]}
         ></IonActionSheet>
 
-        <IonModal isOpen={showModal} cssClass="my-custom-class">
-          <p>This is modal content</p>
-          <IonButton onClick={() => setShowModal(false)}>Close Modal</IonButton>
-        </IonModal>
-
-        <IonButton onClick={() => setShowModal(true)}>Show Modal</IonButton>
       </IonContent>
 
       <IonLoading
