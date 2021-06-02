@@ -44,6 +44,7 @@ const DealersPage: React.FC = () => {
       d.adrStateNm.toLowerCase().includes(value.toLowerCase()) ||
       d.grpNm.toLowerCase().includes(value.toLowerCase()) ||
       d.dmsNm.toLowerCase().includes(value.toLowerCase()) ||
+      d.dlrCd.toLowerCase().includes(value.toLowerCase()) ||
       d.crmNm?.toLowerCase().includes(value.toLowerCase())
       )
   }

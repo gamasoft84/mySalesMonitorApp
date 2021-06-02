@@ -18,8 +18,8 @@ import { IonBadge, IonItem, IonLabel } from "@ionic/react";
 import {
   phonePortraitOutline,tabletPortraitOutline,laptopOutline
 } from "ionicons/icons";
-import { getDetailUsersByDealer } from "../helpers/getDataKMM";
-import { getTotalDealer } from "../helpers/utils";
+import { getDetailUsersByDealer } from "../../helpers/getDataKMM";
+import { getTotalDealer } from "../../helpers/utils";
 
 const colors = [
   "secondary",
@@ -33,6 +33,7 @@ const colors = [
 
 interface InfoDealer {
   dealer: string;
+  dlrCd: string;
   total: number;
   deviceType: string;
 }
@@ -99,7 +100,7 @@ const LoiginByDevice: React.FC = () => {
 
       <IonContent fullscreen>
         {!showLoading ? (
-          <IonItem>
+          <IonItem routerLink={`/page/all/users`}>
             <IonLabel>TOTAL</IonLabel>
             <IonBadge color="success" slot="end">
               {total}
@@ -110,7 +111,7 @@ const LoiginByDevice: React.FC = () => {
         )}
 
         {dataSearch.map((d, index) => (
-          <IonItem key={index}>
+         <IonItem key={index} routerLink={`/page/${d.dlrCd}/users`}>           
             <IonLabel>{d.dealer}</IonLabel>
             <IonBadge color={colors[index % 6]} slot="end">
               {d.total}

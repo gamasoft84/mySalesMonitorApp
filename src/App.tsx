@@ -28,12 +28,13 @@ import Summary from './pages/Summary';
 import MainTabs from './pages/MainTabs';
 import PricePage from './pages/PricePage';
 import TakePicture from './components/TakePicture';
-import LoiginByDevice from './pages/LoiginByDevice';
+import LoiginByDevice from './pages/user/LoginByDevice';
 import ErrorsByTypePage from './pages/ErrorsByTypePage';
 import DealersPage from './pages/Dealers';
 import DealerDetail from './pages/DealerDetail';
 import GalleryPage from './pages/gallery/GalleryPage';
 import CoverDetail from './pages/gallery/CoverDetail';
+import LoginUsersDetail from './pages/user/LoginUsersDetail';
 
 const App: React.FC = () => {
   return (
@@ -72,6 +73,12 @@ const App: React.FC = () => {
             <Route path="/page/DealersPage" exact={true}>
               <DealersPage/>
             </Route>
+            <Route path="/page/:dlrCd/users" exact={true}>
+              <LoginUsersDetail/>
+            </Route>
+            <Route path="/page/DealersPage" exact={true}>
+              <DealersPage/>
+            </Route>
             <Route path="/page/dealer/:id" exact={true}>
               <DealerDetail/>
             </Route>
@@ -80,7 +87,7 @@ const App: React.FC = () => {
             </Route>
             <Route path="/page/gallery/:model/:year" exact={true}>
               <CoverDetail/>
-            </Route> 
+            </Route>
             <Route path="/tabs" render={() => <MainTabs />} />
           </IonRouterOutlet>
         </IonSplitPane>

@@ -29,3 +29,9 @@ export const getDetailUsersByDealer = async() => {
     const data = (await resp.json()).detail;
     return data;
 }
+
+export const getDetailUsers = async() => {
+    const resp = await fetchConToken('getDetailUsers');
+    const data = (await resp.json()).detail;
+    return data;
+}
