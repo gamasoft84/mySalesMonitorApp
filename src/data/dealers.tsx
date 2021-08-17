@@ -612,15 +612,15 @@ const dealersData : InfoDealer [] =
         "address": "Av. Leyes de Reforma 111. Col. Paseos de Churubusco"
     },
     {
-        "dlrCd": "ACH02",
+        "dlrCd": "ACH03",
         "dlrNm": "Kia Juarez",
         "dmsNm": "Intelisis",
-        "grpNm": "Alden",
+        "grpNm": "Haddad",
         "crmNm": "Sicop",
         "postCd": "32340",
         "adrStateNm": "Chihuahua",
         "adrCityNm": "Cd. Juárez",
-        "rfc": "AKJ150703PH6",
+        "rfc": "HAJ210607B70",
         "telephone": "6561731900",
         "address": "Paseo Triunfo de la República # 5044-B Col. 2a. Burócrata"
     },
