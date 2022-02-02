@@ -35,3 +35,18 @@ export const getDetailUsers = async() => {
     const data = (await resp.json()).detail;
     return data;
 }
+
+export const getDealers = async() => {
+    const resp = await fetchConToken('getDealers');
+    const data = (await resp.json()).dealers;
+    return data;
+}
+
+export const getDealerDetail = async(dealerCode) => {
+    const resp = await fetchConToken(`getDealerDetail/${dealerCode}`);
+    const data = (await resp.json()).dealerDetail;
+    return data;
+}
+
+
+

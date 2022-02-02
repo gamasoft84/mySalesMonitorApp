@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import dealersData from "../data/dealers"
+import { getDealers } from "../helpers/getDataKMM";
 
 import {
   IonLoading,
@@ -18,18 +18,24 @@ import { IonItem, IonLabel } from "@ionic/react";
 import { InfoDealer } from "../models/IDealer";
 
 const DealersPage: React.FC = () => {
+  const [dealersData, setDealersData] = useState<InfoDealer[]>([]);
   const [dataSearch, setDataSearch] = useState<InfoDealer[]>([]);
   const [totalDealers, setTotalDealers] = useState(0);
   const [searchText, setSearchText] = useState('');
 
+
   const [showLoading, setShowLoading] = useState(true);
 
-  useIonViewWillEnter(() => {      
-    let dealers = searchText ? addFilter(searchText) : dealersData;
-    setDataSearch(dealers);
-    setTotalDealers(dealers.length);
-    setShowLoading(false); 
+  useIonViewWillEnter(() => {
+    getDealers().then((data) => {
+        setDealersData(data);
+        let dealers = searchText ? addFilter(searchText) : data;
+        setDataSearch(dealers);
+        setTotalDealers(dealers.length);
+        setShowLoading(false); 
+    });   
   });
+
 
   const onChangeSearch = (value: string) =>{
       let dataFilter = addFilter(value);
@@ -78,6 +84,7 @@ const DealersPage: React.FC = () => {
             <IonLabel className="ion-text-wrap ion-hide-sm-down" color="primary">DMS</IonLabel>            
             <IonLabel className="ion-text-wrap ion-hide-sm-down" color="primary">CRM</IonLabel>            
           </IonItem>
+          
         {dataSearch.map((d, index) => (
           <IonItem key={index} routerLink={`/page/dealer/${d.dlrCd}`}>
             <IonLabel className="ion-text-wrap">{d.dlrNm}</IonLabel>  

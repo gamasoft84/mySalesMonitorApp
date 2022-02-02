@@ -13,4 +13,5 @@ export interface InfoDealer {
     address : string;
     latitude? : number,
     longitude? : number
+    sirena? : string;
   }
