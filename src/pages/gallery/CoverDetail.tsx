@@ -9,12 +9,10 @@ import {
   IonLoading,
   IonSlide,
   IonSlides,
-  useIonViewWillEnter,
-  IonButton,
-  IonActionSheet,
-  IonModal,
+  useIonViewDidLeave,
+  IonActionSheet
 } from "@ionic/react";
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { useParams } from "react-router";
 import { getImagesByModelByYear } from "../../helpers/getDataCMS";
 import modelsData from "../../data/modelsData";
@@ -37,9 +35,14 @@ const CoverDetail: React.FC = () => {
   const [showLoading, setShowLoading] = useState(true);
   const [images, setImages] = useState<InfoImages[]>([]);
   const [title, setTitle] = useState("");
-  const [showActionSheet, setShowActionSheet] = useState(false);
+  const [showActionSheet, setShowActionSheet] = useState(false);  
 
-  useIonViewWillEnter(() => {
+ 
+
+  const params = useParams<Params>();
+
+ 
+  useEffect(() => {
     let model = modelsData.filter((m) => m.code === params.model)[0];
     let title = model ? model.name : "DESCONOCIDO";
     setTitle(title);
@@ -47,9 +50,13 @@ const CoverDetail: React.FC = () => {
       setImages(data);
       setShowLoading(false);
     });
-  });
+  }, [params.model, params.year])
 
-  const params = useParams<Params>();
+  useIonViewDidLeave(() => {
+    setImages([]);
+  }) 
+
+
   const [singleSwiper, setSingleSwiper] = useState<any>({});
   const [gallerySwiper, setGallerySwiper] = useState<any>({});
 
@@ -122,7 +129,7 @@ const CoverDetail: React.FC = () => {
           className="single-slider"
           onIonSlideDidChange={swipe}
         >
-          {images.map((image: InfoImages, index: number) => {
+          {images.length>0 ? images.map((image: InfoImages, index: number) => {
             return (
               <IonSlide key={index} onClick={() => tap(index)} onSelect={()=>console.log('onSelect')}>
                 <img
@@ -133,7 +140,7 @@ const CoverDetail: React.FC = () => {
                 ></img>
               </IonSlide>
             );
-          })}
+          }): ''}
         </IonSlides>
 
         <IonSlides
@@ -143,13 +150,13 @@ const CoverDetail: React.FC = () => {
           mode="ios"
           className="gallery-slider"
         >
-          {images.map((image: InfoImages, index: number) => {
+          {images.length> 0 ? images.map((image: InfoImages, index: number) => {
             return (
               <IonSlide key={index} onClick={() => tap(index)}>
                 <img src={image.url}></img>
               </IonSlide>
             );
-          })}
+          }) : ''}
         </IonSlides>
 
         <IonActionSheet

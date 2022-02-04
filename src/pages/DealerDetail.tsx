@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   IonLoading,
@@ -21,8 +21,9 @@ import {
   IonFabButton,
   IonIcon,
   IonFab,
-  useIonViewDidEnter
+  useIonViewDidLeave
 } from "@ionic/react";
+
 
 import { getDealerDetail } from "../helpers/getDataKMM";
 import { CallNumber } from "@ionic-native/call-number";
@@ -47,14 +48,17 @@ const DealerDetail: React.FC = () => {
   let params = useParams<Params>();
 
 
-  useIonViewDidEnter(() => {
+  useEffect(() => {
+      getDealerDetail(params.id).then((data) => {
+          data.dlrCd = params.id;
+          setDealer(data);
+          setShowLoading(false);
+      });   
+  }, [params.id])
 
-    console.log('ID:' + params.id);
-    getDealerDetail(params.id).then((data) => {
-      data.dlrCd = params.id;
-      setDealer(data);
-      setShowLoading(false);
-  });   
+
+  useIonViewDidLeave(() => {
+    setDealer(undefined);
   }) 
 
 
